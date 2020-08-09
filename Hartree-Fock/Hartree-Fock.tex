@@ -1,0 +1,102 @@
+% This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.
+% To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/
+% or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% !TEX TS-program = xelatex
+
+\documentclass[../Main/chem371-notes.tex]{subfiles}
+
+\setcounter{chapter}{2}
+\begin{document}
+
+\chapter{Hartree--Fock Theory}
+
+\section{Hartree--Fock theory and the independent particle approximation}
+The simplest quantum chemistry method is the Hartree--Fock approach.
+This method relies on an independent particle approximation, where the wave function is expressed as a product of single electron orbitals.
+For a system with $N$ electrons this approximation is given by
+\begin{equation}
+\Psi(x_1, x_2, \ldots, x_n) \approx \psi_1(x_1) \psi_2(x_2) \cdots \psi_N(x_N)
+\end{equation}
+This approximation is convenient because it breaks down the problem of solving the Schr\"{o}dinger for a wave function of $3N$ coordinates into a simpler problem where we solve $N$ times for wave functions of 3 coordinates.\mtodo{Add illustration}
+This simplification makes the Hartree--Fock very affordable.
+
+This wave function, however, does not represent the true properties of electrons.
+We know that electrons have to satisfy the Pauli principle, which mathematically is equivalent to requiring that $\Psi(x_1, x_2, \ldots, x_n)$ changes sign if we exchange the label of two particles.
+To illustrate this point, consider two electrons. The wave function $\Psi(x_1, x_2)$ depends on the position and spin of each electron ($x_1$, $x_2$), and it must change sign when we replace $x_2$ with $x_1$ and vice versa, which means
+\begin{iequation}
+\Psi(x_1, x_2) = -\Psi(x_2, x_1)
+\end{iequation}
+It is easy to write down a wave function built from orbitals that satisfies this condition, it just requires making the product antisymmetric with respect to the coordinates.
+Such a wave function is called a \emph{Slater determinant} and for the two electron case is it written as
+\begin{equation}
+\Psi_{\mathrm{SD}}(x_1,x_2) = \frac{1}{\sqrt{2}} 
+\begin{vmatrix}
+\psi_1(x_1) & \psi_1(x_2) \\
+\psi_2(x_1) & \psi_2(x_2)
+\end{vmatrix}
+= \frac{1}{\sqrt{2}} \left[ \psi_1(x_1)\psi_2(x_2) - \psi_1(x_2)\psi_2(x_1) \right]
+\end{equation}
+
+\section{The Hartree--Fock equation}
+The main goal of the Hartree--Fock method is to find the orbitals that give the ``best'' possible wave function.
+Here by ``best'' we mean precisely the one that minimizes the expectation value of the energy, which is given by the integral
+\begin{equation}
+E_\mathrm{SD} = \int \Psi_{\mathrm{SD}}^* \hat{H}\Psi_{\mathrm{SD}}
+\end{equation}
+The \emph{variational} theorem guarantees that the energy of an approximate wave function $\tilde{\Psi}$ is always greater than the exact energy, $\tilde{E} \geq E_\mathrm{exact}$, and the closer we get to the exact energy $E_\mathrm{exact}$, the better our wave function $\tilde{\Psi}$ approximate the exact solution $\Psi_\mathrm{exact}$.
+
+The orbitals that minimize the energy satisfy the \emph{Hartree--Fock equations}
+\begin{equation}
+\hat{f} \psi_i(x) = \epsilon_i  \psi_i(x), \quad \text{ for all } \psi_i(x)
+\end{equation}
+where $\hat{f}$ is the \emph{Fock operator}.
+This is an eigenvalue equation like the Schr\"{o}dinger equation, but it is different because it is valid only in the Hartree--Fock approximation and it is simpler because it only involves functions of 3 coordinates.
+The quantity $\epsilon_i$ is called the \emph{orbital energy} and it is the eigenvalue corresponding to the orbital $\psi_i$.
+
+The physical interpretation of the Hartree--Fock equation is that we can approximate the interaction (repulsion) of an electron in orbital $\psi_i$ with all the remaining $N-1$ electrons via an average potential. This potential is included in the Fock operator ($\hat{f}$).
+Since the average repulsive potential depends on how the electrons are distributed, the Hartree--Fock equation have to be solved via an iterative \emph{self-consistent-field (SCF) procedure}.\mtodo{Add example of SCF and illustration}
+This procedure consists of the following steps:
+\begin{enumerate}
+\item Forming an initial guess. At beginning of an SCF procedure we need to start from orbitals that are close to the optimal ones.
+Common ways to guess the orbitals include neglecting electron repulsion or forming the average potential from a superposition of atomic densities.
+\item Updating the Fock matrix. Using the current set of orbitals, the average potential and the Fock operator are built. 
+\item Determining the orbitals and orbital energies. Using the current Fock matrix, the Hartree--Fock equations are solved to obtain one set of orbitals and orbital energies and an updated value for the total energy.
+\item Convergence check. The program checks if the change in energy and orbitals with respect to the previous iteration is less than a predefined convergence threshold. If the computation has converged, we stop. Otherwise, we go back to step 2. and use the new set of orbital to compute a new Fock operator.
+\end{enumerate}
+
+
+\section{Interpretation of the orbital energies}
+It is important to understand the precise meaning of the orbital energies $\epsilon_i$ because it is slightly different than our intuition as chemists.
+\emph{Koopman's theorem} shows that the orbital energies are related to the energy necessary to remove or add electrons to an orbital.
+More precisely, for orbitals that are occupied by electrons, Koopman's theorem says that $-\epsilon_i$ correspond to the energy necessary to remove one electron (ionize) from the system
+\begin{equation}
+\ce{M} \rightarrow \ce{M+} + e^{-} 
+\end{equation}
+Koopman's theorem can be stated as
+\begin{iequation}
+\text{Ionization potential for electron in }\psi_i = \mathrm{IP}_i = E^{N-1} - E^{N} = -\epsilon_i.
+\end{iequation}
+If an occupied has a negative orbital energy, then we have to put energy into a molecule to remove that electron (the IP is positive).
+
+Similarly, for orbitals that are not occupied, the orbital energy $\epsilon_a$ corresponds to the energy released when an electron is added to form an anion (if the starting molecule is neutral)
+\begin{equation}
+\ce{M} + e^{-} \rightarrow \ce{M-}  
+\end{equation}
+In this case, Koopman's theorem helps us quantify the electron affinity
+\begin{iequation}
+\text{Electron affinity for electron in }\psi_a = \mathrm{EA}_a = E^{N} - E^{N+1} = -\epsilon_a.
+\end{iequation}
+Therefore, if an unoccupied orbital has a negative energy (positive EA), a molecule will attach an electron and form a stable negative ion.
+If instead $\epsilon_a$ is positive, a molecule will not accept an electron, and its anion will be unstable with respect to self ionization (the anion will spontaneously loose an electron in a finite amount of time).
+
+Koopman's theorem assumes that during the electron ionization/attachment the orbitals do not change, which means that it ignores relaxation effects to the addition or removal of electrons.
+Koopman's theorem also neglects electron correlation, so the IP and EA will deviate from experiment.
+This means that in practice Koopman's theorem is not a very accurate way to compute the IP and EA of molecules.
+Nevertheless, it gives physical meaning to the orbital energies and it can be used to qualitatively estimate the IP and EA of molecules.
+
+\section{Interpretation of the orbitals}
+
+
+
+\end{document}
