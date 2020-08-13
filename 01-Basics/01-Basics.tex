@@ -9,7 +9,7 @@
 \setcounter{chapter}{0}
 \begin{document}
 
-\chapter{Principles of Quantum Chemistry}
+\chapter{The Basics of Quantum Chemistry}
 
 \section{What is Quantum Chemistry?}
 According to Wikipedia:
@@ -53,13 +53,32 @@ For this probabilistic interpretation to make sense, the sum of the probability 
 \begin{equation}
 \int  d\mathbf{r} \; P(\mathbf{r}) =  \int _{-\infty}^{\infty} dx \int _{-\infty}^{\infty} dy \int _{-\infty}^{\infty} dz \; |\Psi(\mathbf{r})|^2   = 1
 \end{equation}
+This equation says that if we integrate (sum) the probability of finding one electron over all space, it must add up to one.
+
+Once we have an exact or approximate wave function we can compute the \emph{expectation value} (average value) of an operator corresponding to a quantity that we might want to determine.
+For example, to find out the energy we compute the expectation value of the Hamiltonian
+\begin{equation}
+E = \int \Psi^* \hat{H} \Psi
+\end{equation}
+where the integral runs over all positions of the particle in our system.\mnote{This result generalizes to any operator. If the operator $\hat{O}$ corresponds to the observable $O$, then the expectation value  of $O$ is given by
+\begin{equation}
+\braket{O}= \int \Psi^* \hat{O} \Psi
+\end{equation}
+}
+
+\section{The Quantum Mechanics of Molecules}
 
 In an atom or a molecule, where we have more than one particle, the wave function is a function of the coordinates of all the electrons ($\mathbf{r}_i$) and nuclei ($\mathbf{R}_i$)
 \begin{equation}
 \Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{R}_1,  \mathbf{R}_2,\ldots)
 \end{equation}
 The wave function must also satisfy another important property: it must be antisymmetric with respect to the interchange of electrons. We will return to this point later.
-
+\mfigure{
+\centering{
+\includegraphics[width=1.75in]{img/molecule.pdf}
+}
+\captionof{figure}{In quantum mechanics, a molecule is a collection of particles with position vector $\mathbf{r}_i$ and charge $q_i$. The distance between particles $i$ and $j$ is $r_{ij} = |\mathbf{r}_i - \mathbf{r}_j|$.}
+}
 
 The Hamiltonian operator depends on the coordinates ($\mathbf{r}_i$) and the charges ($q_i$) of all the particles, and it can be separated into a kinetic energy operator plus a potential operator
 \begin{align}
@@ -86,50 +105,6 @@ where, for example, $\hat{V}_\mathrm{ee}$ is the electron-electron potential ene
 \hat{V}_\mathrm{ee} = \frac{1}{4\pi \epsilon_0}  \sum_{i < j}^{\mathrm{electrons}} \frac{q_i q_j}{r_{ij}}
 \end{equation}
 
-Once we have an exact or approximate wave function we can compute the \emph{expectation value} (average value) of an operator corresponding to a quantity that we might want to determine.
-For example, to find out the energy we could compute the expectation value of the Hamiltonian
-\begin{equation}
-E = \int \Psi^* \hat{H} \Psi
-\end{equation}
-where the integral runs over all positions of the particle in our system.\mnote{This result generalizes to any operator. If the operator $\hat{O}$ corresponds to the observable $O$, then the expectation value  of $O$ is given by
-\begin{equation}
-\braket{O}= \int \Psi^* \hat{O} \Psi
-\end{equation}
-}
-
-
-
-\section{The fixed nuclei approximation}
-One important simplification of the Schr\"{o}dinger equation is to separate the motion of the electrons and the nuclei.
-In the fixed nuclei approximation, also known as \emph{Born--Oppenheimer approximation}, we solve the Schr\"{o}dinger equation using a Hamiltonian in which the nuclei are assumed to be in fixed positions.
-The Born--Oppenheimer approximation is justified by the fact that the mass of a nucleus is at least 1836 times larger than that of an electron.
-A good analogy to the Born--Oppenheimer approximation is that of flies (electrons) that move around cows (nuclei). The motion of the flies does not perturb the cows, but if a cow moves then all the flies will rapidly readjust their motion to follow the cow.
-\mfigure{
-\centering{
-\includegraphics[width=1.75in]{img/born-oppenheimer-cow-fly.pdf}
-}
-\captionof{figure}{The fly/cow analogy of the Born--Oppenheimer approximation.}
-}
-The Hamiltonian then takes a simpler form
-\begin{equation}
-\hat{H}_\mathrm{BO} = \hat{T}_\mathrm{e} + \hat{V}_\mathrm{ee} + \hat{V}_\mathrm{en} + V_\mathrm{nn}
-\end{equation}
-The first term in this expression is just the kinetic energy of the electrons. The second term accounts for the electron-electron repulsion energy. The third term is the electron-nuclear attraction (attractive force acting on the electron). In this approximation, the last term is just a constant, which accounts for the nuclear-nuclear repulsion energy.\mnote{
-The nuclear-nuclear repulsion energy is given by
-\begin{equation}
-V_\mathrm{nn} = \frac{1}{4\pi \epsilon_0}  \sum_{i < j}^{\mathrm{nuclei}} \frac{q_i q_j}{R_{ij}}
-\end{equation}
-}
-
-The Born--Oppenheimer approximation is fundamental to our understanding of chemistry and  it one that you are already very familiar with, even though you might have not realized it.
-This approximation is implicitly assumed when you first learn about quantum mechanics in introductory chemistry courses.
-Once we solve the Schr\"{o}dinger equation in the BO approximation, we get an energy that depends on the coordinates of the nuclei
-\begin{equation}
-E = E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)
-\end{equation}
-This is why we can talk about a molecule having a certain energy at a given nuclear configuration.
-The quantity $E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)$ represents the potential felt by the nuclei due to the interaction with the electrons, and since it is a function of many variables it is commonly called the \emph{potential energy surface}.
-
 
 \section{Atomic units}
 When doing computations on atoms or molecules it is convenient to use \emph{atomic units} (abbreviated a.u.), which are defined by the following conditions
@@ -141,6 +116,39 @@ When doing computations on atoms or molecules it is convenient to use \emph{atom
 \end{align}
 These are natural units because the charge and mass of the particles we want to describe (electrons) are close to one.
 In practice, it means that we will often avoid carrying around powers of ten in computations.
+
+Another good reason for using atomic units is that computations done in the units involve numbers that are close to one, and because computers always use approximate representations for real numbers, the results will be less affected by roundoff errors.
+All computer programs that perform quantum chemistry computations on molecules adopt atomic units.
+So you will often have to convert results from atomic units to SI or other units that are commonly used in chemistry.
+
+Two of the most useful atomic units are the \emph{hartree} (symbol  \Eh), the unit of energy, and the \emph{bohr}, the unit of length.
+One hartree is a minuscule amount of energy, only about 4.36 $\times 10^{-18}$ Joules!
+The energy changes that we measure in chemistry typically refer to one mole of matter, so a more convenient conversion factor is 
+\begin{iequation}
+1 \text{ hartee} = 627.51 \text{kcal/mol}
+\end{iequation}
+This factor converts energy differences for one atom/molecule to a mole of atoms/molecules.
+
+\begin{example}[Strength of a carbon hydrogen bond in methane]
+Breaking a \ce{C-H} bond in methane requires about 104 kcal/mol. When converted to hartree this quantity is 104/627.51 kcal/mol = 0.165 \Eh.
+This is (approximately) the energy difference that you would get if you performed a quantum chemistry computation in which you compare the energy of one \ce{CH4} molecule with that of the \ce{CH3} radical plus one hydrogen atom.
+\end{example}
+
+\begin{example}[Chemical accuracy]
+When modeling chemical reactivity, a common goal is to achieve an accuracy of 1 kcal/mol. When converted to atomic units this amount is equal to 1/627.51 \Eh = 0.0015936 \Eh.
+\end{example}
+
+One bohr is the most probable distance between the nucleus and the electron in a hydrogen atom, and when expressed in units of angstrom it is equal to
+\begin{iequation}
+1 \text{ bohr} = 0.52918 \text{ \AA{}}
+\end{iequation}
+Most computational chemistry programs \emph{assume} that the geometry of a molecule is specified using in units of \AA{}.
+Alternatively, the user can specify that a molecular geometry is defined in units of bohr.
+However, computations are typically done in units of bohr, and some times the output of a computation may be printed in these units.
+It is always good to double check to avoid that a geometry is specified in the correct units.
+A typical problem for beginners is confusing the two units.
+In this case, it is easy to spot the problem because something strange typically happens is a computation (all the atoms in a molecule are far apart, or scrunched up).
+
 
 The following table shows the name and conversion factors between atomic units and SI units:
 \begin{table}[htbp]
@@ -154,7 +162,7 @@ Mass & $m_e$ & $9.1095 \times 10^{-31}$ Kg \\
 Charge & $e$ & $1.6022 \times 10^{-19}$ C \\
 Action & $\hbar$ & $1.05457 \times 10^{-34}$ J $\cdot$ s \\
 %Coulomb's constant & $\frac{1}{4\pi \epsilon_0}$ & $ \times 10^{-34}$ J $\cdot$ s \\
-Energy & $E_{\rm h}$ (Hartree) & 627.51 kcal/mol \\
+Energy & $E_{\rm h}$ (hartree) & 627.51 kcal/mol \\
 & & 27.211 eV \\
 & & 219474.63 cm$^{-1}$ \\
 & & $4.3598 \times 10^{-18}$ J\\
