@@ -11,6 +11,8 @@
 
 \chapter{The Basics of Quantum Chemistry}
 
+(updated \today)
+
 \section{What is Quantum Chemistry?}
 According to Wikipedia:
 \begin{quotation}
@@ -66,6 +68,51 @@ where the integral runs over all positions of the particle in our system.\mnote{
 \end{equation}
 }
 
+As pointed out by Dirac, the Schr\"{o}dinger equation is hard to solve!
+There are only very few systems for which one can find exact solutions of the Schr\"{o}dinger equation.
+These include a particle in a box, the harmonic oscillator, a rotating molecule.
+The next example discusses the particle in a box.
+
+\begin{example}[The particle in a box]
+\mfigure{
+\centering{
+\includegraphics[width=1.75in]{img/pib.pdf}
+}
+\captionof{figure}{Particle trapped in a one-dimensional box. (\textbf{A}) the first five energy levels as a function of the quantum number $n = 1, 2, \ldots$. (\textbf{B}) The first four wave functions of the particle in a box.}
+\label{fig:pib}
+}
+
+In this example we examine one of the simplest problems in quantum mechanics that can be solved exactly: a particle trapped in a one-dimensional box.
+We assume that the box has length $L$, and it runs from 0 to $L$.
+For this toy model the Hamiltonian is given by
+\begin{equation}
+\hat{H} = -\frac{\hbar^2}{2m} \frac{d^2}{dx^2}.
+\end{equation}
+The Schr\"{o}dinger equation is given by
+\begin{equation}
+-\frac{\hbar^2}{2m} \frac{d^2}{dx^2} \psi(x) = E \psi(x).
+\end{equation}
+The solutions of this equation depend on a \emph{quantum number} $n = 1, 2, 3, \ldots$, an integer that goes from one to infinity.
+The energy of the $n$th level is
+\begin{iequation}
+E_n = \frac{\hbar^2 n^2 \pi^2}{2m L^2} = \frac{h^2 n^2 }{8 m L^2}, \quad n = 1,2,3\ldots
+\end{iequation}
+while the corresponding wave functions are given by
+\begin{iequation}
+\psi_{n}(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{n \pi x}{L}\right).
+\end{iequation}
+The energy levels and wave functions for the particle in a box are shown in Fig.~\ref{fig:pib}.
+Here we see two important features of the Schr\"{o}dinger equation.
+Firstly, the energy levels are discrete, a phenomenon that is referred to as quantization.
+Secondly, the higher energy wave functions contain more nodes.
+Here by a node we mean a point where the wave function is equal to zero.
+This is a consequence of the fact that wave functions are orthogonal with respect to each other.
+You have already encountered this phenomenon when you studied the atomic orbitals of the hydrogen atom.
+For example, the 1s orbital has no nodes. The 2p orbitals (2p$_x$,2p$_y$,2p$_z$) have one nodal plane, etc.
+\end{example}
+
+
+
 \section{The Quantum Mechanics of Molecules}
 
 In an atom or a molecule, where we have more than one particle, the wave function is a function of the coordinates of all the electrons ($\mathbf{r}_i$) and nuclei ($\mathbf{R}_i$)
@@ -73,12 +120,6 @@ In an atom or a molecule, where we have more than one particle, the wave functio
 \Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{R}_1,  \mathbf{R}_2,\ldots)
 \end{equation}
 The wave function must also satisfy another important property: it must be antisymmetric with respect to the interchange of electrons. We will return to this point later.
-\mfigure{
-\centering{
-\includegraphics[width=1.75in]{img/molecule.pdf}
-}
-\captionof{figure}{In quantum mechanics, a molecule is a collection of particles with position vector $\mathbf{r}_i$ and charge $q_i$. The distance between particles $i$ and $j$ is $r_{ij} = |\mathbf{r}_i - \mathbf{r}_j|$.}
-}
 
 The Hamiltonian operator depends on the coordinates ($\mathbf{r}_i$) and the charges ($q_i$) of all the particles, and it can be separated into a kinetic energy operator plus a potential operator
 \begin{align}
@@ -105,6 +146,12 @@ where, for example, $\hat{V}_\mathrm{ee}$ is the electron-electron potential ene
 \hat{V}_\mathrm{ee} = \frac{1}{4\pi \epsilon_0}  \sum_{i < j}^{\mathrm{electrons}} \frac{q_i q_j}{r_{ij}}
 \end{equation}
 
+\mfigure{
+\centering{
+\includegraphics[width=1.75in]{img/molecule.pdf}
+}
+\captionof{figure}{In quantum mechanics, a molecule is a collection of particles with position vector $\mathbf{r}_i$ and charge $q_i$. The distance between particles $i$ and $j$ is $r_{ij} = |\mathbf{r}_i - \mathbf{r}_j|$.}
+}
 
 \section{Atomic units}
 When doing computations on atoms or molecules it is convenient to use \emph{atomic units} (abbreviated a.u.), which are defined by the following conditions
