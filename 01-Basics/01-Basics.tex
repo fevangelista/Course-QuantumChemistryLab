@@ -78,7 +78,7 @@ The next example discusses the particle in a box.
 \centering{
 \includegraphics[width=1.75in]{img/pib.pdf}
 }
-\captionof{figure}{Particle trapped in a one-dimensional box. (\textbf{A}) the first five energy levels as a function of the quantum number $n = 1, 2, \ldots$. (\textbf{B}) The first four wave functions of the particle in a box.}
+\captionof{figure}{Particle trapped in a one-dimensional box. (\textbf{A}) the first few energy levels as a function of the quantum number $n = 1, 2, \ldots$ for a narrow (left) and wide (right) box. (\textbf{B}) The first four wave functions of the particle in a box.}
 \label{fig:pib}
 }
 
@@ -104,6 +104,9 @@ while the corresponding wave functions are given by
 The energy levels and wave functions for the particle in a box are shown in Fig.~\ref{fig:pib}.
 Here we see two important features of the Schr\"{o}dinger equation.
 Firstly, the energy levels are discrete, a phenomenon that is referred to as quantization.
+Since the energy is proportional to $1/L^2$, when we make the box wider, the spacing between the energy levels becomes smaller.
+Note also that the lowest energy level ($n=1$) always has a positive energy, this is usually called the \emph{zero point energy}.
+
 Secondly, the higher energy wave functions contain more nodes.
 Here by a node we mean a point where the wave function is equal to zero.
 This is a consequence of the fact that wave functions are orthogonal with respect to each other.
@@ -137,21 +140,36 @@ The Hamiltonian operator depends on the coordinates ($\mathbf{r}_i$) and the cha
 where $r_{ij} = |\mathbf{r}_i - \mathbf{r}_j|$ is the distance between particles $i$ and $j$ and the symbol $\nabla^2_i$ is the Laplacian operator acting on particle $i$.
 Since the electron and nuclei interact via their electric charge, the potential is just the classical Coulomb potential.
 
-In a molecule, where we have electrons and nuclei, we can separate terms that refer to electron (e) and nuclear (n) coordinates
-\begin{equation}
-\hat{H} = \hat{T}_\mathrm{e} + \hat{T}_\mathrm{n} +  \hat{V}_\mathrm{ee} + \hat{V}_\mathrm{en} + \hat{V}_\mathrm{nn}
-\end{equation}
-where, for example, $\hat{V}_\mathrm{ee}$ is the electron-electron potential energy
-\begin{equation}
-\hat{V}_\mathrm{ee} = \frac{1}{4\pi \epsilon_0}  \sum_{i < j}^{\mathrm{electrons}} \frac{q_i q_j}{r_{ij}}
-\end{equation}
-
 \mfigure{
 \centering{
 \includegraphics[width=1.75in]{img/molecule.pdf}
 }
 \captionof{figure}{In quantum mechanics, a molecule is a collection of particles with position vector $\mathbf{r}_i$ and charge $q_i$. The distance between particles $i$ and $j$ is $r_{ij} = |\mathbf{r}_i - \mathbf{r}_j|$.}
 }
+
+In a molecule, where we have electrons and nuclei, we can separate terms that refer to electron (e) and nuclear (n) coordinates
+\begin{equation}
+\hat{H} = \hat{T}_\mathrm{e} + \hat{T}_\mathrm{n} +  \hat{V}_\mathrm{ee} + \hat{V}_\mathrm{en} + \hat{V}_\mathrm{nn}
+\end{equation}
+In this equation $\hat{T}_\mathrm{e}$ is the kinetic energy of the electrons
+\begin{equation}
+\hat{T}_\mathrm{e} = -\frac{1}{2 m_e}  \sum_{i}^{\mathrm{electrons}}\nabla^2_i
+\end{equation}
+$\hat{V}_\mathrm{ee}$ is the electron-electron potential energy ($q_i = q_j = - q_e$), which is always positive
+\begin{equation}
+\hat{V}_\mathrm{ee} = \frac{q_e^2}{4\pi \epsilon_0}  \sum_{i < j}^{\mathrm{electrons}} \frac{1}{|\mathbf{r}_{i} - \mathbf{r}_{j}|}
+\end{equation}
+and $\hat{V}_\mathrm{en}$ is the electron-nuclear potential energy (for electrons $q_i = -q_e < 0$, for nuclei $q_j > 0$), which is always negative
+\begin{equation}
+\hat{V}_\mathrm{en} = - \frac{q_e}{4\pi \epsilon_0}  \sum_{i}^{\mathrm{electrons}}  \sum_{j}^{\mathrm{nuclei}} \frac{q_j}{|\mathbf{r}_{i} - \mathbf{R}_{j}|}
+\end{equation}
+The other terms are defined in a similar way.
+
+In principle, to predict the energy and properties of atoms we could solve the Schr\"{o}dinger equation for a molecule
+\begin{equation}
+\hat{H} \Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{R}_1,  \mathbf{R}_2,\ldots) = E \Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{R}_1,  \mathbf{R}_2,\ldots)
+\end{equation}
+However, in the next chapter we will see that there is an important approximation that we can make and that simplifies this problem a bit.
 
 \section{Atomic units}
 When doing computations on atoms or molecules it is convenient to use \emph{atomic units} (abbreviated a.u.), which are defined by the following conditions
