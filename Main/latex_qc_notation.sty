@@ -1,0 +1,42 @@
+\usepackage{ifthen}
+%\usepackage{contract}
+\usepackage{simplewick}
+
+%
+% Macros
+%
+\newcommand{\so}[1]{{#1 \sigma}}
+
+%@ Second quantization operator, Mukherjee (q) notation 
+\newcommand{\genop}[1]{\hat{c}_{#1}} 
+
+%@ Contraction of second quantization operators in q-notation
+\newcommand{\qcontract}[2][1ex]{\contraction[#1]{} {\hat{c}} {#2} {\hat{c}}}
+\newcommand{\gqcontract}[1]{\contraction[0.75ex]{} {\hat{c}} {#1} {\hat{c}}\contraction[1.25ex]{} {\hat{c}} {#1} {\hat{c}}}
+
+%@ Contraction of second quantization operators
+\newcommand{\contract}[2][1ex]{\contraction[#1]{} {\hat{a}} {#2} {\hat{a}}}
+\newcommand{\gcontract}[1]{\contraction[0.75ex]{} {\hat{a}} {#1} {\hat{a}}\contraction[1.25ex]{} {\hat{a}} {#1} {\hat{a}}}
+
+\newcommand{\sqop}[2]{\hat{a}_{#2}^{#1}}
+\newcommand{\cop}[1]{\hat{a}_{#1}^{\dagger}}
+\newcommand{\aop}[1]{\hat{a}_{#1}^{\,}}
+\newcommand{\ecop}[1]{\hat{a}^{#1}}
+\newcommand{\eaop}[1]{\hat{a}_{#1}}
+\newcommand{\no}[2][]{\{{#2}\}_{#1}}
+\newcommand{\aphystei}[2]{\bra{#1}\!\ket{#2}}
+\newcommand{\Eh}[0]{$E_\mathrm{h}$\xspace}
+\newcommand{\kcal}[0]{kcal mol$^{-1}$\xspace}
+\newcommand{\mref}[0]{\Phi_{\rm MR}}
+\newcommand{\str}[1]{\mathcal{#1}}
+\newcommand{\Rt}[2]{ R_{#1}^{#2} }
+\newcommand{\Ri}[2]{ (R^{-1})_{#1}^{#2} }
+\newcommand{\Ut}[2]{ R_{\mathcal{#1}}^{\mathcal{#2}} }
+\newcommand{\Ui}[2]{ (R^{-1})_{\mathcal{#1}}^{\mathcal{#2}} }
+\newcommand{\NewText}[1]{ {\bf \color{red} #1} }
+\newcommand{\tento}[2]{$#1\!\cdot\! 10^{#2}$}
+\newcommand{\density}[2]{\gamma_{#2}^{#1}}
+\newcommand{\cdensity}[2]{\eta_{#2}^{#1}}
+\newcommand{\cumulant}[2]{\lambda_{#2}^{#1}}
+\newcommand{\kro}[2]{\delta_{#2}^{#1}}
+\newcommand{\tens}[3]{{#1}_{#2}^{#3}}
