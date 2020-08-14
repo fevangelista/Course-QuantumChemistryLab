@@ -66,15 +66,6 @@
   BoldItalicFont= *-BoldItalic
 ]{NotoSans}
 
-%\setmainfont[ExternalLocation=../Fonts/Noto_Sans/]{NotoSans}[
-%  Scale=0.8333333333, %0.9166666667,
-%  Extension = .ttf,
-%  UprightFont = *-Regular,
-%  BoldFont= *-Bold,
-%  ItalicFont= *-Italic,
-%  BoldItalicFont= *-BoldItalic
-%]
-
 \newfontfamily\headingfont[ExternalLocation=../Fonts/Barlow_Condensed/]{BarlowCondensed}[ 
   Extension = .ttf,
   UprightFont = *-Regular,
