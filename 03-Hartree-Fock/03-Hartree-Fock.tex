@@ -157,8 +157,25 @@ This is an eigenvalue equation like the Schr\"{o}dinger equation, but it is simp
 However, it is important to remember that this equation is valid only in the Hartree--Fock approximation.
 The quantity $\epsilon_i$ is called the \emph{orbital energy} and it is the eigenvalue corresponding to the orbital $\psi_i$.
 
-The physical interpretation of the Hartree--Fock equation is that we can approximate the interaction (repulsion) of an electron in orbital $\psi_i$ with all the remaining $N-1$ electrons via an average potential. This potential is included in the Fock operator ($\hat{f}$).
-Since the average repulsive potential depends on how the electrons are distributed, the Hartree--Fock equation have to be solved via an iterative \emph{self-consistent-field (SCF) procedure}.\mtodo{Add example of SCF and illustration}
+The physical interpretation of the Hartree--Fock equation is that we can approximate the interaction (repulsion) of an electron in orbital $\psi_i$ with all the remaining $N-1$ electrons via an average potential. This potential is included in the Fock operator
+\begin{equation}
+\hat{f} = \underbrace{-\frac{1}{2}\nabla^2}_{\text{kinetic}}
++\underbrace{
+- \sum_i^{\mathrm{nuclei}} \frac{Z_i}{|\mathbf{r} - \mathbf{R}_i|}
+}_{\text{electron-nuclear}}
++
+\underbrace{
+\int d\mathbf{r}' \, \frac{\rho(\mathbf{r}')}{|\mathbf{r} -\mathbf{r}'|}
+}_{\text{Coulomb interaction}} + \text{ exchange interaction}
+\end{equation}
+in the terms that depend on the density of electrons ($\rho$).
+The electron density is in turn given by the sum of the square of the occupied orbitals, which for a closed-shell molecule is given by
+\begin{equation}
+\rho(\mathbf{r}) = 2 \sum_{i}^\mathrm{occupied} |\varphi(\mathbf{r})|^2
+\end{equation}
+The Hartree--Fock equations and these last two equations tell us that to find the orbital we need to know $\hat{f}$, but to know $\hat{f}$ we need to know the density, which is determined by the orbitals.
+In practice this means that the Hartree--Fock equations have to be solved via an iterative \emph{self-consistent-field (SCF) procedure}.
+
 This procedure consists of the following steps:
 \begin{enumerate}
 \item Forming an initial guess. At beginning of an SCF procedure we need to start from orbitals that are close to the optimal ones.
@@ -197,7 +214,54 @@ The label ``DIIS'', indicates that the code is using the direct inversion of the
 
 \section{Interpretation of the orbital energies}
 
+It is important to understand the precise meaning of the orbital energies $\epsilon_i$ because it is slightly different than our intuition as chemists.
+\emph{Koopmans' theorem} shows that the orbital energies are related to the energy necessary to remove or add electrons to an orbital.
+More precisely, for orbitals that are occupied by electrons, Koopmans' theorem says that $-\epsilon_i$ correspond to the energy necessary to remove one electron (ionize) from the system
+\begin{center}
+\ce{M -> M+ + e-}
+\end{center}
+Koopmans' theorem can be stated as
+\begin{iequation}
+\text{Ionization potential for electron in }\psi_i = \mathrm{IP}_i = E^{N-1} - E^{N} = -\epsilon_i.
+\end{iequation}
+If an occupied orbital has a negative energy, then we have to put energy into a molecule to remove that electron (the IP is positive).
+
 \mfigure{
+\begin{center}
+\begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)},]
+    \draw (0,0.5) -- (0.5,0.5);
+    \draw[thick,->,>=stealth] (0.15,0.325) -- (0.15,0.675);    
+    \draw[thick,<-,>=stealth] (0.35,0.325) -- (0.35,0.675);    
+    \draw (0,1.0) -- (0.5,1.0);
+    \draw[thick,->,>=stealth] (0.15,0.825) -- (0.15,1.175);    
+    \draw[thick,<-,>=stealth] (0.35,0.825) -- (0.35,1.175);    
+    \draw (0,1.5) -- (0.5,1.5);
+    \draw[thick,->,>=stealth] (0.15,1.325) -- (0.15,1.675);    
+    \draw[thick,<-,>=stealth] (0.35,1.325) -- (0.35,1.675);   
+    \draw (0,2.5) -- (0.5,2.5);
+    \draw (0,3.0) -- (0.5,3.0);
+    \draw (0,3.5) -- (0.5,3.5);
+%    \draw (0.75,0.5) node{1};
+%    \draw (0.75,1.0) node{2};
+\end{tikzpicture}
+\ce{->}
+\begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)},]
+    \draw (0,0.5) -- (0.5,0.5);
+    \draw[thick,->,>=stealth] (0.15,0.325) -- (0.15,0.675);    
+    \draw[thick,<-,>=stealth] (0.35,0.325) -- (0.35,0.675);    
+    \draw (0,1.0) -- (0.5,1.0);
+    \draw[thick,->,>=stealth] (0.15,0.825) -- (0.15,1.175);    
+    \draw[thick,<-,>=stealth] (0.35,0.825) -- (0.35,1.175);    
+    \draw (0,1.5) -- (0.5,1.5);
+%    \draw[thick,->,>=stealth] (0.15,1.325) -- (0.15,1.675);    
+    \draw[thick,<-,>=stealth] (0.35,1.325) -- (0.35,1.675);   
+    \draw (0,2.5) -- (0.5,2.5);
+    \draw (0,3.0) -- (0.5,3.0);
+    \draw (0,3.5) -- (0.5,3.5);
+    \draw (1.25,1.5) node{IP = $-\epsilon_i$};
+%    \draw (0.75,1.0) node{2};
+\end{tikzpicture}
+\\ \vspace{24pt}
 \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)},]
     \draw (0,0.5) -- (0.5,0.5);
     \draw[thick,->,>=stealth] (0.15,0.325) -- (0.15,0.675);    
@@ -229,47 +293,44 @@ The label ``DIIS'', indicates that the code is using the direct inversion of the
     \draw[thick,->,>=stealth] (0.15,2.325) -- (0.15,2.675);        
     \draw (0,3.0) -- (0.5,3.0);
     \draw (0,3.5) -- (0.5,3.5);
-%    \draw (0.75,0.5) node{1};
+    \draw (1.25,2.5) node{EA = $-\epsilon_a$};
 %    \draw (0.75,1.0) node{2};
 \end{tikzpicture}
-}
-
-It is important to understand the precise meaning of the orbital energies $\epsilon_i$ because it is slightly different than our intuition as chemists.
-\emph{Koopman's theorem} shows that the orbital energies are related to the energy necessary to remove or add electrons to an orbital.
-More precisely, for orbitals that are occupied by electrons, Koopman's theorem says that $-\epsilon_i$ correspond to the energy necessary to remove one electron (ionize) from the system
-\begin{center}
-\ce{M -> M+ + e-}
 \end{center}
-Koopman's theorem can be stated as
-\begin{iequation}
-\text{Ionization potential for electron in }\psi_i = \mathrm{IP}_i = E^{N-1} - E^{N} = -\epsilon_i.
-\end{iequation}
-If an occupied has a negative orbital energy, then we have to put energy into a molecule to remove that electron (the IP is positive).
+\captionof{figure}{Illustration of Koopmans' theorem.}
+\label{fig:koopmans}
+}
 
 Similarly, for orbitals that are not occupied, the orbital energy $\epsilon_a$ corresponds to the energy released when an electron is added to form an anion (if the starting molecule is neutral)
 \begin{center}
 \ce{M + e- -> M-}
 \end{center}
-In this case, Koopman's theorem helps us quantify the electron affinity
+In this case, Koopmans' theorem helps us quantify the electron affinity
 \begin{iequation}
 \text{Electron affinity for electron in }\psi_a = \mathrm{EA}_a = E^{N} - E^{N+1} = -\epsilon_a.
 \end{iequation}
 Therefore, if an unoccupied orbital has a negative energy (positive EA), a molecule will attach an electron and form a stable negative ion.
 If instead $\epsilon_a$ is positive, a molecule will not accept an electron, and its anion will be unstable with respect to self ionization (the anion will spontaneously loose an electron in a finite amount of time).
 
-Koopman's theorem assumes that during the electron ionization/attachment the orbitals do not change, which means that it ignores relaxation effects to the addition or removal of electrons.
-Koopman's theorem also neglects electron correlation, so the IP and EA will deviate from experiment.
-This means that in practice Koopman's theorem is not a very accurate way to compute the IP and EA of molecules.
+Koopmans' theorem assumes that during the electron ionization/attachment the orbitals do not change, which means that it ignores relaxation effects to the addition or removal of electrons.
+Koopmans' theorem also neglects electron correlation, so the IP and EA will deviate from experiment.
+This means that in practice Koopmans' theorem is not a very accurate way to compute the IP and EA of molecules.
 Nevertheless, it gives physical meaning to the orbital energies and it can be used to qualitatively estimate the IP and EA of molecules.
 
-The example below shows the orbital energies of the occupied and unoccupied orbitals of water.
-The lowest ionization potential of water is estimated according to Koopmans' theorem from the energy of the highest occupied MO (HOMO), which has an energy of $-0.492954$ \Eh.
-The corresponding IP is equal to 0.492954 \Eh = 13.4138 eV, a value that compares well with the experimental gas-phase IP (ca. 12.6 eV).
-Note that Koopmans' theorem applied to the Hartree--Fock solution also predicts that the anion \ce{H2O-} is unstable with respect to the process
+\mfigure{
 \begin{center}
-\ce{H2O- -> H2O + e-} 
+\includegraphics[width=2in]{img/PES_of_H2O.jpg}
 \end{center}
-since the energy of the first unoccupied orbital (virtual) is positive (0.185103 \Eh).
+\captionof{figure}{Photoionization spectrum of water in the gas phase (in eV). Source: Wikimedia Commons.}
+\label{fig:water_pes}
+}
+The importance of Koopmans' theorem is that it build a bridge to experiments that measure the IP and EA of molecules.
+For example, photoelectron spectroscopy, can measure the ionization potential (also called the binding energy) of electrons in different orbitals.
+In this spectroscopy, a molecule is ionized with a high energy photon and one electron is released with kinetic energy equal to the energy of the photons ($h \nu$) minus the binding energy, $h \nu - IP$.
+Therefore, it allows to measure the binding energy of different orbitals.
+An example of the photoelectron spectrum of water in the gas phase is given in Fig.~\ref{fig:water_pes}.
+
+The example below shows the Hartree--Fock orbital energies of the occupied and unoccupied orbitals of an isolated water molecule in the gas phase.
 \begin{small}
 \begin{verbatim}
   Water/Hartree-Fock
@@ -305,9 +366,39 @@ since the energy of the first unoccupied orbital (virtual) is positive (0.185103
 \end{verbatim}
 \end{small}
 
-\section{Interpretation of the orbitals}
-The orbital obtained at the end of a Hartee--Fock computation may be visualized.
+The lowest ionization potential of water is estimated according to Koopmans' theorem from the energy of the highest occupied MO (HOMO, labeled 1b$_1$), which has an energy of $-0.493$ \Eh.
+The corresponding IP is equal to 0.493 \Eh = 13.4 eV, a value that compares well with the experimental gas-phase IP (ca. 12.6 eV, indicated in the figure).
+The ionization potential for the second orbital (labeled 3a$_1$) is 0.566 \Eh = 15.4 eV.
+This corresponds to the  middle broad band in the spectrum centered around 15 eV.
+Note that Koopmans' theorem applied to the Hartree--Fock solution also predicts that the anion \ce{H2O-} is unstable with respect to the process ionization process
+\begin{center}
+\ce{H2O- -> H2O + e-} 
+\end{center}
+since the energy of the first unoccupied orbital (virtual) is positive (0.185 \Eh).
 
-\section{Hartree--Fock theory for open-shell species}
+
+%\section*{Summary}
+%\begin{ibox}
+%\begin{myitems}
+%\item The wave function of .
+%\item The \textbf{Hamiltonian operator} [$\hat{H}$]. Operators are mathematical objects that perform operations of function. Given an operator $\hat{O}$, when we apply it to a function $f(x)$ it returns another function $g(x)$, $\hat{O}f(x) = g(x)$.
+%\item The \textbf{imaginary unit} [$i$]. 
+%\item The \textbf{reduced Planck constan} [$\hbar = h / 2\pi$, pronounced ``h-bar''].
+%\end{myitems}
+%\end{ibox}
+
+
+
+%Practical considerations
+%Hartree-Fock self-consistent-field (HF SCF) usually converges fairly well with a good initial guess
+%Stretched bonds, diradicals, transition metals, high-spin states, etc., can cause problems for convergence
+%In high-symmetry cases, the program can guess the wrong orbital occupations, and then have trouble recovering from this to get the desired solution
+%Not guaranteed to land on a local minimum in C space; can check by running a Hartree-Fock stability analysis (useful but not commonly done). However, even this doesn’t guarantee you’re not in some other local minimum (esp. for high-symmetry cases)
+%User is responsible for making sure the orbital occupations are reasonable and the spin state is correct. Many students don’t know that the ground state of O2 is a triplet, not a singlet. The programs don’t know about this!
+%     
+%Improving Convergence
+%Most codes use “direct inversion of the iterative subspace” (DIIS) to improve convergence (improves guess for the next step)
+%The quality of the guess density makes a big difference. Core Hamiltonian (no initial density) is quite poor. Hückel and GWH ok; superposition of atomic densities (SAD) seems best when available
+%Using MO's from one geometry as guesses for a nearby geometry (or neutral orbitals as a guess for a cation or anion, or singlet orbitals as a guess for a triplet) works well
 
 \end{document}
