@@ -4,7 +4,8 @@ import os
 from shutil import copy
 
 chapters = ['01-Basics',
-            '02-BornOppenheimer']
+            '02-BornOppenheimer',
+            '03-Hartree-Fock']
 
 root_dir = os.getcwd()
 
