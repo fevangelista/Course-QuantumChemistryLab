@@ -53,6 +53,15 @@ When we turn to more complicated systems, like atoms with more than one electron
 This is what we will look into in the next section.
 
 \section{Basis}
+
+\mfigure{
+\centering{
+\includegraphics[width=1.75in]{img/trajectory.pdf}}
+\captionof{figure}{The trajectory of a particle with initial velocity vector $\mathbf{v} = (v_x, v_y)$.
+This vector may be decomposed in the basis of orthogonal unit vectors $\mathbf{e}_x$ and $\mathbf{e}_y$ as $\mathbf{v} = v_x \mathbf{e}_x + v_y \mathbf{e}_y$.}
+\label{fig:2dtraj}
+}
+
 An important concept when constructing numerical approximations is that of a basis.
 To build some intuition about the concept of a basis you can think back to your introductory physics courses and Newton's equations.
 Consider the problem of describing the trajectory of a particle under the effect of gravity.
@@ -75,18 +84,16 @@ In the more general case, the velocity is a three dimensional vector, and must b
 \begin{equation}
 \mathbf{v} = v_x \mathbf{e}_x + v_y \mathbf{e}_y + v_z \mathbf{e}_z
 \end{equation}
-Interestingly, this idea can also be extended to functions. 
-(CONTINUE FROM HERE)
+Interestingly, this idea can also be extended to functions.
+For example, suppose we want to approximate some function $g(x)$.
+We could start from choosing two simple functions $f_1(x)$ and $f_2(x)$ and approximate $g(x)$ as
+\begin{equation}
+g(x) = c_1 f_1(x) + c_2 f_2(x)
+\end{equation}
+
 
 
 \section{Approximate solutions via expansion in a basis}
-\mfigure{
-\centering{
-\includegraphics[width=1.75in]{img/basis_expansion.pdf}
-}
-\captionof{figure}{Example of expansion of the function $\exp(x) \sin(x)$ in a basis of polynomials $x^i$.
-By the time we include fourth powers of $x$ this function is approximated well in the entire range $0 \leq x \leq \pi$.}
-}
 One way to find an approximate solution of the Schr\"{o}dinger equation is to express it as a \emph{linear combination of basis functions}.
 This is a very common strategy for studying differential equations that are too difficult to solve in analytical form.
 The basic idea is to approximate a function $g(x)$ as a sum of a finite number of fixed functions $f_i(x)$, called basis functions, multiplied by the coefficients $c_i$
@@ -98,6 +105,14 @@ For example, we could choose the set of basis functions to be the polynomials of
 \begin{equation}
 g(x) \approx  c_0 +  c_1 x + \cdots + c_K x^{K} = \sum_{i=1}^{K} c_i x^{i-1}
 \end{equation}
+
+\mfigure{
+\centering{
+\includegraphics[width=1.75in]{img/basis_expansion.pdf}
+}
+\captionof{figure}{Example of expansion of the function $\exp(x) \sin(x)$ in a basis of polynomials $x^i$.
+By the time we include fourth powers of $x$ this function is approximated well in the entire range $0 \leq x \leq \pi$.}
+}
 
 \section{Linear combination of atomic orbitals}
 

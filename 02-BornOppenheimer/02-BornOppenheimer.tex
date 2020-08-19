@@ -85,14 +85,27 @@ The quantity $E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)$ represents the potential fe
 Many of the concepts about the structure and energetics of molecules are derived from the properties of potential energy surface.
 These include the notion of molecular equilibrium structure, equilibrium energy, transition states, and reaction barriers.
 
-The potential energy surface for a diatomic molecule \ce{A-B} is easy to visualize, because the energy depends only on the bond distance $r$, that is, $E = E(r)$.
+The potential energy surface for a diatomic molecule \ce{A-B} is easy to visualize, because the energy depends only on the bond distance $r$, that is, $E = E(r)$, and we call it a \emph{potential energy curve} (PEC).
 Fig.~\ref{fig:diatomic} shows four potential energy surfaces for a diatomic molecule.
 The top two plots show a stable \ce{AB} molecule.
-In the first case (\textbf{A}), the reaction \ce{A + B} $\rightarrow$ {AB} is barrierless and happens spontaneously.
+In the first case (\textbf{A}), the reaction \ce{A + B} $\rightarrow$ {AB} is barrier-less and happens spontaneously.
 The bond distance $r_e$ where the energy of AB is a minimum is the \emph{equilibrium geometry}, and the corresponding energy is the \emph{equilibrium energy}.
-
-In the second case  (\textbf{B}),  the reaction \ce{A + B} $\rightarrow$ {AB} proceeds via a transition state \ce{AB}* that has an energy higher than \ce{A + B}.
+In the second case  (\textbf{B}),  the reaction \ce{A + B} $\rightarrow$ {AB} proceeds via a \emph{transition state} \ce{AB}* that has an energy higher than \ce{A + B}.
 This reaction can happen only if A and B collide with enough energy to overcome the \emph{reaction barrier}.
+
+Mathematically, both equilibrium geometries and transition states correspond to \emph{stationary points} $r^*$ on the potential energy curve, which are characterized by a zero first derivative with respect to $r$
+\begin{equation}
+\text{At a stationary point } r^*: \quad \left.\frac{d E(r)}{dr}\right|_{r = r^*} = 0
+\end{equation}
+What distinguishes an equilibrium geometry and a transition state is the \emph{curvature} of the potential energy curve at $r^*$.
+For equilibrium geometries, the energy is a minimum and the curvature is positive, that is, the second derivative of the potential is positive
+\begin{equation}
+\text{At a minimum } r^*: \quad \left.\frac{d^2 E(r)}{dr^2}\right|_{r = r^*} > 0
+\end{equation}
+A transition state instead corresponds to a negative curvature or negative second derivative
+\begin{equation}
+\text{At a transistion state } r^*: \quad \left.\frac{d^2 E(r)}{dr^2}\right|_{r = r^*} < 0
+\end{equation}
 
 Plots \textbf{C} and \textbf{D} show two other scenarios in which the molecule AB is unstable.
 When there is transition state (\textbf{C}), then we call a molecule \emph{metastable}, because it may be able to exist for a short amount of time before breaking down into A + B.
