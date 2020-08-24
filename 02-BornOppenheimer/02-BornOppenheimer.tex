@@ -77,10 +77,10 @@ The Born--Oppenheimer approximation is fundamental to our understanding of chemi
 This approximation is implicitly assumed when you first learn about quantum mechanics in introductory chemistry courses.
 Once we solve the Schr\"{o}dinger equation in the BO approximation, the energy of the electrons depends on the coordinates of the nuclei
 \begin{equation}
-E = E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)
+E = E(\mathbf{R})= E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)
 \end{equation}
 This is why we can talk about a molecule having a certain energy at a given nuclear configuration.
-The quantity $E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)$ represents the potential felt by the nuclei due to the interaction with the electrons, and since it is a function of many variables it is commonly called the \emph{potential energy surface}.
+The quantity $E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)$ represents the potential felt by the nuclei due to the interaction with the electrons, and since it is a function of many variables it is commonly called the \emph{potential energy surface} (PES).
 
 Many of the concepts about the structure and energetics of molecules are derived from the properties of potential energy surface.
 These include the notion of molecular equilibrium structure, equilibrium energy, transition states, and reaction barriers.
@@ -116,7 +116,7 @@ If there is no transition state (\textbf{D}), then the molecule AB is unstable a
 \section{Potential energy surfaces of polyatomic molecules}
 
 More general potential energy surfaces are more difficult to visualize because  $E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)$ is a high-dimensional hypersurface.
-For example, a molecule like \ce{H3CNO} has a potential energy surface that has 13 dimensions!
+For example, a molecule like \ce{H3CNO} has a 13 dimensional potential energy surface!
 
 A much simpler case is that of a molecule with three atoms (ABC), which corresponds to a potential energy surface in four dimensions (this number comes from taking three coordinates for each atom $3 \times 3 = 9$ plus the energy, and subtracting 3 degrees of freedom for rotations and 3 for translations).
 However, if we fix one of these three dimensions, for example, if we keep the angle A-B-C at 180\textdegree, then the resulting surface lives in only three dimensions and we can easily plot it.
@@ -128,7 +128,7 @@ The second minimum (a local minimum) corresponds to the molecule AB weakly inter
 These two structures, are separated by a transition state \ce{A-B-C}.
 These plots also show a the minimum energy reaction path that connects \ce{A + BC} to \ce{AB + C} and the corresponding energy potential.
 To go from \ce{A\bond{...}B-C} to \ce{A-B\bond{...}C}, the molecule has to overcome a reaction barrier.
-As you can see from the plot in \textbf{C}, the height of this barrier depends on the direction of the reaction.  
+As you can see from the plot in \textbf{C}, the height of this barrier depends on the direction of the reaction.
 
 \mfigure{
 \centering{
@@ -137,5 +137,30 @@ As you can see from the plot in \textbf{C}, the height of this barrier depends o
 \captionof{figure}{The potential energy surface for a linear triatomic molecule. \textbf{A} and \textbf{B} show the potential energy surface plotted using a contour plot and in 3D, respectively. A reaction path connecting \ce{A + BC} to \ce{AB + C} is shown, which goes through two local minima and one transition state. The energy profile for this reaction coordinate is shown in \textbf{C}.}
 \label{fig:abc}
 }
+
+\section{Stationary points in polyatomic molecules}
+In the same way we characterized the stationary points of a diatomic molecule using the first and second derivatives of the potential energy curve, we can extend the same analysis to polyatomic molecules.
+A stationary point is similarly defined as a geometry $\mathbf{R}^*$ at which \emph{the partial derivatives with respect to all coordinates are zero}
+\begin{iequation}
+\text{At a stationary point } \mathbf{R}^*: \quad \left.\frac{\partial E(\mathbf{R}_1,\mathbf{R}_2,\ldots)}{\partial \mathbf{R}_i}\right|_{\mathbf{R} = \mathbf{R}^*} = 0,\quad  i=1,\ldots,N_\mathrm{atoms}
+\end{iequation}
+
+To characterize the nature of a stationary point it is necessary to examine the curvature of the PES.
+In the case of a local or global minimum, the stationary point must have a positive curvature along any direction.
+Going back to the example in Fig.~\ref{fig:abc}, you can see that both minima look like a 2D parabola (paraboloid), and moving away from the minimum always leads to an increase in energy.
+
+Transition states are instead characterized by having at least one direction along which the curvature is negative (negative second derivative), while in any other orthogonal direction the curvature is positive.
+In the example in Fig.~\ref{fig:abc}, at the transition state, the direction with negative curvature is a line along the dashed line.
+
+We will come back to the question of how to characterize stationary points and give a more precise mathematical definition when we study vibrations in molecules.
+
+\begin{summary}
+\item To simplify the Schr\"{o}dinger equation the Born--Oppenheimer approximation separates the motion of electrons and nuclei.
+\item The potential energy surface $E(\mathbf{R})$ is the solution of ,the electron Schr\"{o}dinger equation at a fixed nuclear configuration $ \mathbf{R} \equiv (\mathbf{R}_1,\mathbf{R}_2,\ldots)$.
+\item The stationary points of the potential energy surface represent stable configurations of atoms in a molecule (minima) or transition states. These can be characterized by the curvature along orthogonal directions of $E(\mathbf{R})$.
+\end{summary}
+
+
+
 
 \end{document}

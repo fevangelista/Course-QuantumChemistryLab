@@ -241,7 +241,7 @@ linewidth=2pt]{eBox}
 
 \newenvironment{summary}
 	{
-	\subsection*{Summary}
+	\section*{Summary}
 		\begin{ImportantBox}
 		\begin{itemize}[label=\raisebox{-0.75ex}{\HandRight}]
 		\setlength{\itemsep}{3pt}
