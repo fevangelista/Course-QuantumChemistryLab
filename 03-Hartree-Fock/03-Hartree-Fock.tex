@@ -16,7 +16,7 @@ The simplest quantum chemistry method is the Hartree--Fock approach.
 This method relies on an independent particle approximation, where the wave function is expressed as a product of wave functions of single electron (orbitals).
 We will indicate orbitals with the lower-case Greek letter phi ($\varphi$).
 An orbital is a function of the coordinate vector $\mathbf{r} = (x,y,z)$ for an electron.
-To distinguish between different orbitals we will label them with an index and write them as
+To distinguish between different orbitals, we will label them with an index and write them as
 \begin{iequation}
 \varphi_i(\mathbf{r})
 \end{iequation}
@@ -26,7 +26,7 @@ In the Hartree--Fock approach we approximate the wave function of $N$ electrons 
 \label{eq:hartree_prod}
 \Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N) \approx \varphi_1(\mathbf{r}_1) \varphi_2(\mathbf{r}_2) \cdots \varphi_N(\mathbf{r}_N)
 \end{equation}
-This approximation is convenient because it breaks down the problem of solving the Schr\"{o}dinger for a wave function of $3N$ coordinates into a simpler problem where we solve $N$ times for wave functions of 3 coordinates.\mnote{For example, imagine that you represent the wave function $\Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N)$ using a grid that has 10 points along each dimension.
+This approximation reduces the problem of solving the Schr\"{o}dinger equation for a wave function of $3N$ coordinates into a simpler problem: we only need to determine $N$ wave functions that depend on 3 spatial coordinates.\mnote{For example, imagine representing the wave function $\Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N)$ using a grid that has 10 points along each dimension.
 For $N$ electrons, this grid will have a total of $10^{3N}$ points since $\Psi$ depends on $3N$ coordinates.
 In comparison, if we represent each orbital with the same grid, each orbital requires only $10^3$ grid points, and the total number of grid points is $N 10^3$.
 Even for as little as six electrons the exact wave function required already $10^{18}$ points, while the Hartree--Fock approach requires only $6000$!
@@ -34,10 +34,9 @@ Even for as little as six electrons the exact wave function required already $10
 This simplification makes Hartree--Fock theory much more affordable than a direct solution of the Schr\"{o}dinger equation!
 
 \section{Spin and the Pauli principle (antisymmetry)}
-The wave function form of Eq.~\eqref{eq:hartree_prod} is still missing two important ingredients: it does not account for the spin of electrons and the Pauli exclusion principle.
-
-Spin can be easily introduced by recognizing that each orbital must be accompanied by a spin function, that is, a label for the spin of the electron.
-As you have learned from previous classes, the electron can have to value of spin: up (alpha, $\alpha$) and down (beta, $\beta$).
+The wave function form of Eq.~\eqref{eq:hartree_prod} is still missing two important ingredients: 1) it does not account for the spin of electrons and 2) it does not obey the Pauli exclusion principle.
+Spin can be easily introduced by recognizing that the wave function of each electron must be accompanied by a spin function, that is, a label for the spin of the electron.
+As you have learned from previous classes, the spin of an electron can be either up (alpha, $\alpha$) or down (beta, $\beta$).\mnote{This is not rigorously true.}
 %\mnote{
 %\begin{equation}
 %\varphi_i(\mathbf{r}) \alpha \equiv 
@@ -51,26 +50,29 @@ As you have learned from previous classes, the electron can have to value of spi
 %  \end{tikzpicture}
 %\end{equation}
 %}
-So if we want to specify that an electron occupies orbital $\varphi_i$ and has spin alpha we write $\varphi_i(\mathbf{r}) \alpha$, which is equivalent to the in the arrow notation to
+So if we want to specify that an electron occupies the orbital $\varphi_i$ and has spin alpha, we write the wave function $\varphi_i(\mathbf{r}) \alpha$.
+We can represent this wave function graphically with an orbital diagram in which one electron with up spin occupies the level $i$
 \begin{equation}
 \varphi_i(\mathbf{r}) \alpha
 \equiv \;
 \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)},]
     \draw (0,0.5) -- (0.5,0.5);
     \draw[thick,->,>=stealth] (0.15,0.325) -- (0.15,0.675);
+    \draw (0.7,0.5) node{$i$};
 \end{tikzpicture}
 \end{equation}
-For an electron with beta spin we similarly write
+In the case of beta electron, the graphical representation is similar but with a down arrow
 \begin{equation}
 \varphi_i(\mathbf{r}) \beta
 \equiv \;
 \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)},]
     \draw (0,0.5) -- (0.5,0.5);
-    \draw[thick,<-,>=stealth] (0.35,0.325) -- (0.35,0.675);    
+    \draw[thick,<-,>=stealth] (0.35,0.325) -- (0.35,0.675);
+    \draw (0.7,0.5) node{$i$};
 \end{tikzpicture}
 \end{equation}
-When we don not want to be specific about the spin of the electron (and thus allow for both options), we will use instead the \emph{spinorbital} notation based on the Greek letter psi [$\psi(x)$] and use the variable $x = \{ \mathbf{r},\sigma\}$ to represent both the position vector ($\mathbf{r}$) and one spin coordinate ($\omega$).
-For the moment, we can think of spin orbitals as always coming in alpha/beta pairs that share the same spatial orbital
+When we do not want to be specific about the spin of the electron (and thus allow for both options), we will use instead the \emph{spinorbital} notation based on the Greek letter psi [$\psi(x)$] and use the variable $x = \{ \mathbf{r},\sigma\}$ to represent both the position vector ($\mathbf{r}$) and one spin coordinate ($\omega$).
+For the moment, we can think of spin orbitals as always coming in alpha/beta pairs that share the same spatial orbital. To distinguish between alpha/beta orbitals we place a bar above the orbital index
 \begin{align}
 \psi_i(x) & = \varphi_i(\mathbf{r}) \alpha \\
 \psi_{\bar{i}}(x) & = \varphi_i(\mathbf{r}) \beta
@@ -83,15 +85,20 @@ Now we can be more precise and write the product wave function as
 
 Equation~\eqref{eq:hartree_prod_spin} is still not fully correct.
 To make sure that the wave function satisfies the Pauli exclusion principle, we have to enforce that the sign of $\Psi(x_1, x_2, \ldots, x_N)$ changes if we exchange the labels of any two particles.
-To illustrate this point, consider two electrons. The wave function $\Psi(x_1, x_2)$ depends on the position and spin of each electron ($x_1$, $x_2$), and it must change sign when we replace $x_2$ with $x_1$ and vice versa, which means
+To illustrate this point, consider two electrons. The wave function $\Psi(x_1, x_2)$ depends on the position and spin of each electron ($x_1$, $x_2$), and it must change sign when we replace $x_2$ with $x_1$ and vice versa, which means\mnote{This wave function satisfies the Pauli principle in the sense that if the two electron have the same \emph{space and spin} coordinates ($x_1 = x_2 = x$), then the wave function is zero because the condition
+\begin{equation*}
+\Psi(x, x) = -\Psi(x, x)
+\end{equation*}
+can be satisfied only if $\Psi(x, x) =0$.
+}
 \begin{iequation}
 \Psi(x_1, x_2) = -\Psi(x_2, x_1)
 \end{iequation}
 It is easy to write down a wave function built from orbitals that satisfies this condition, it just requires making the product antisymmetric with respect to the coordinates.
 Such a wave function is called a \emph{Slater determinant}\mnote{
-The Slater determinant is named for John C. Slater, who introduced the determinant in 1929 as a means of ensuring the antisymmetry of a many-electron wave function, although the wave function in the determinant form first appeared independently in Heisenberg's and Dirac's articles three years earlier.  (Source: Wikipedia)
+The Slater determinant is named after John C. Slater, who introduced the determinant in 1929 as a means of ensuring the antisymmetry of a many-electron wave function, although the wave function in the determinant form first appeared independently in Heisenberg's and Dirac's articles three years earlier.  (Source: Wikipedia)
 \begin{center}
-\includegraphics[width=1.5in]{img/slater_john_clarke_a3.jpg}
+\includegraphics[width=1.25in]{img/slater_john_clarke_a3.jpg}
 \end{center}
 \captionof{figure}{John C. Slater.}
 } and for the two electron case is it written as\mnote{Here I use the symbol $\ket{\psi_i \psi_j \cdots }$ to indicate a general Slater determinant.}
@@ -138,7 +145,8 @@ However, we could also arrange the electrons in two different orbitals both with
 In this state, the spin of the electrons add up and we get what is called a \emph{triplet state}.
 
 We have covered a lot of details in this section, so I want to make sure that the important message comes across: \emph{in the Hartree--Fock method the wave function of many electrons is approximated with a single Slater determinant}.
-This approach satisfies the Pauli exclusion principle and it has a direct connection to the familiar orbital diagrams.
+This approach accounts for spin and satisfies the Pauli exclusion principle.
+We can also conveniently represent Slater determinants graphically with orbital diagrams.
 
 \section{The Hartree--Fock equation}
 The main goal of the Hartree--Fock method is to find the orbitals that give the ``best'' possible wave function.
@@ -157,7 +165,8 @@ This is an eigenvalue equation like the Schr\"{o}dinger equation, but it is simp
 However, it is important to remember that this equation is valid only in the Hartree--Fock approximation.
 The quantity $\epsilon_i$ is called the \emph{orbital energy} and it is the eigenvalue corresponding to the orbital $\psi_i$.
 
-The physical interpretation of the Hartree--Fock equation is that we can approximate the interaction (repulsion) of an electron in orbital $\psi_i$ with all the remaining $N-1$ electrons via an average potential. This potential is included in the Fock operator
+The physical interpretation of the Hartree--Fock equation is that we can approximate the interaction (repulsion) of an electron in orbital $\psi_i$ with all the remaining $N-1$ electrons via an average potential. 
+The Fock operator is defined as
 \begin{equation}
 \hat{f} = \underbrace{-\frac{1}{2}\nabla^2}_{\text{kinetic}}
 +\underbrace{
@@ -168,15 +177,19 @@ The physical interpretation of the Hartree--Fock equation is that we can approxi
 \int d\mathbf{r}' \, \frac{\rho(\mathbf{r}')}{|\mathbf{r} -\mathbf{r}'|}
 }_{\text{Coulomb interaction}} + \text{ exchange interaction}
 \end{equation}
-in the terms that depend on the density of electrons ($\rho$).
+and it contains two terms that depend on the distribution of electrons.
+One of these two terms is the \emph{Coulomb interaction} of an electron with all the other electrons and it is proportional to the density of electrons ($\rho$). This term has a classical interpretation: it represents the Coulomb interaction of an electron with a charge distribution.\mnote{The term labeled \emph{exchange interaction} is a bit more complicated to write down. It comes from imposing the Pauli principle and it does not have a classical interpretation.}
 The electron density is in turn given by the sum of the square of the occupied orbitals, which for a closed-shell molecule is given by
 \begin{equation}
-\rho(\mathbf{r}) = 2 \sum_{i}^\mathrm{occupied} |\varphi(\mathbf{r})|^2
+\rho(\mathbf{r}) = 2 \sum_{i}^\mathrm{occupied} |\varphi_i(\mathbf{r})|^2
 \end{equation}
-The Hartree--Fock equations and these last two equations tell us that to find the orbital we need to know $\hat{f}$, but to know $\hat{f}$ we need to know the density, which is determined by the orbitals.
-In practice this means that the Hartree--Fock equations have to be solved via an iterative \emph{self-consistent-field (SCF) procedure}.
+The Hartree--Fock equations and these last two equations tell us that to find the orbital we need to know $\hat{f}$, but to know $\hat{f}$ we need to know the density, which is determined by the orbitals
+\begin{equation}
+\psi_i \leftarrow \hat{f} \leftarrow \rho \leftarrow \psi_i
+\end{equation}
+In practice this means that the Hartree--Fock equations have to be solved via a \emph{self-consistent-field (SCF) procedure} where one first starts with a guess for the orbitals and then proceeds to improve the solution iteratively.
 
-This procedure consists of the following steps:
+The SCF procedure consists of the following steps:
 \begin{enumerate}
 \item Forming an initial guess. At beginning of an SCF procedure we need to start from orbitals that are close to the optimal ones.
 Common ways to guess the orbitals include neglecting electron repulsion or forming the average potential from a superposition of atomic densities.
@@ -213,18 +226,6 @@ The label ``DIIS'', indicates that the code is using the direct inversion of the
 
 
 \section{Interpretation of the orbital energies}
-
-It is important to understand the precise meaning of the orbital energies $\epsilon_i$ because it is slightly different than our intuition as chemists.
-\emph{Koopmans' theorem} shows that the orbital energies are related to the energy necessary to remove or add electrons to an orbital.
-More precisely, for orbitals that are occupied by electrons, Koopmans' theorem says that $-\epsilon_i$ correspond to the energy necessary to remove one electron (ionize) from the system
-\begin{center}
-\ce{M -> M+ + e-}
-\end{center}
-Koopmans' theorem can be stated as
-\begin{iequation}
-\text{Ionization potential for electron in }\psi_i = \mathrm{IP}_i = E^{N-1} - E^{N} = -\epsilon_i.
-\end{iequation}
-If an occupied orbital has a negative energy, then we have to put energy into a molecule to remove that electron (the IP is positive).
 
 \mfigure{
 \begin{center}
@@ -301,6 +302,18 @@ If an occupied orbital has a negative energy, then we have to put energy into a 
 \label{fig:koopmans}
 }
 
+It is important to understand the precise meaning of the orbital energies $\epsilon_i$ because it is slightly different than our intuition as chemists.
+\emph{Koopmans' theorem} shows that the orbital energies are related to the energy necessary to remove or add electrons to an orbital.
+More precisely, for orbitals that are occupied by electrons, Koopmans' theorem says that $-\epsilon_i$ correspond to the energy necessary to remove one electron (ionize) from the system
+\begin{center}
+\ce{M -> M+ + e-}
+\end{center}
+Koopmans' theorem can be stated as
+\begin{iequation}
+\text{Ionization potential for electron in }\psi_i = \mathrm{IP}_i = E^{N-1} - E^{N} = -\epsilon_i.
+\end{iequation}
+If an occupied orbital has a negative energy, then we have to put energy into a molecule to remove that electron (the IP is positive).
+
 Similarly, for orbitals that are not occupied, the orbital energy $\epsilon_a$ corresponds to the energy released when an electron is added to form an anion (if the starting molecule is neutral)
 \begin{center}
 \ce{M + e- -> M-}
@@ -324,6 +337,7 @@ Nevertheless, it gives physical meaning to the orbital energies and it can be us
 \captionof{figure}{Photoionization spectrum of water in the gas phase (in eV). Source: Wikimedia Commons.}
 \label{fig:water_pes}
 }
+
 The importance of Koopmans' theorem is that it build a bridge to experiments that measure the IP and EA of molecules.
 For example, photoelectron spectroscopy, can measure the ionization potential (also called the binding energy) of electrons in different orbitals.
 In this spectroscopy, a molecule is ionized with a high energy photon and one electron is released with kinetic energy equal to the energy of the photons ($h \nu$) minus the binding energy, $h \nu - IP$.
