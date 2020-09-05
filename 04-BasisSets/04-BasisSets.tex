@@ -16,7 +16,7 @@ The goal of this chapter is to discuss some practical aspects of how Hartree--Fo
 We will encounter the idea of using a linear combination of basis functions to approximate the orbitals $\varphi(\mathbf{r})$ in systematically improvable way.
 Lastly, we will look at some applications of these ideas.
 
-\section{Exact solutions to the Schr\"{o}dinger equation}
+\section{Exact solutions to the Schr\"{o}dinger equation for the hydrogen atom}
 As it was mentioned earlier, we know exact solutions of the Schr\"{o}dinger only for a handful of models.
 An example that should be familiar to you is the hydrogen atom.
 For this system, the solutions are known to depend on three quantum numbers $n$, $l$, and $m_l$, and that the energy levels (eigenvalues) are given by (in atomic units)
@@ -52,7 +52,7 @@ while the 2p$_{z}$ orbital is given by
 When we turn to more complicated systems, like atoms with more than one electron and molecules, the Schr\"{o}dinger equation becomes intractable and we have to turn to approximate numerical methods to solve it (recall Dirac's quote on this point).
 This is what we will look into in the next section.
 
-\section{Basis}
+\section{Bases, basis vectors, and basis functions}
 
 \mfigure{
 \centering{
@@ -114,7 +114,7 @@ This looks very similar to the definition of the dot product of two vectors of a
 \begin{equation}
 \text{``}f_1 \cdot f_2\text{''} = \braket{f_1 | f_2} = \int_{-\infty}^{\infty} dx \, f_1^*(x) f_2(x)
 \end{equation}
-From which we define two functions to be orthogonal if the inner product $\braket{f_1 | f_2}  = 0$.
+From this definition, we define two functions to be orthogonal if their inner product is null, $\braket{f_1 | f_2}  = 0$.
  
 \section{Approximate solutions via expansion in a basis}
 We can now look into how the idea discussed in the previous section can be applied to approximate solutions of the Schr\"{o}dinger equation.
@@ -150,16 +150,66 @@ g(x) \approx  c_0 +  c_1 x + \cdots + c_K x^{K} = \sum_{i=0}^{K} c_i x^{i}
 \end{equation}
 As you can see, the first two approximations are not very good, and by the time we use a forth-order polynomial we cannot easily distinguish $\exp(x) \sin(x)$ from its approximation.
 
+\section{Gaussian atomic orbitals bases}
+
+To understand how we use bases in quantum chemistry we will start by learning how atomic orbitals are approximated with a Gaussian basis.
+Since the early days of computational chemistry it has become common practice to approximate atomic orbitals using a basis of \emph{Gaussian functions}.
+For example, if we want to approximate the 1s orbital of the hydrogen atom, $\mathrm{1s}=  \frac{1}{\sqrt{\pi}} e^{-r}$, an expansion in Gaussian functions consists of the following approximation
+\begin{equation}
+\frac{1}{\sqrt{\pi}} e^{-r} \approx \sum_\mu C_\mu \exp(- \alpha_\mu r^2)
+\end{equation}
+
+At this point we should ask: \emph{Why would we want to approximate a function that we already know how to write in closed form?}
+The answer is that all quantum chemistry methods need to know integrals of atomic orbitals like
+\begin{equation}
+\int d\mathbf{r}_1 \, d\mathbf{r}_2 \, \frac{\phi^*_i(\mathbf{r}_1) \phi^*_j(\mathbf{r}_2) \phi_k(\mathbf{r}_1) \phi_l(\mathbf{r}_2)}{r_{12}}
+\end{equation}
+These integrals are difficult to compute with function of the form $e^{-\alpha r}$, but they turn out to be doable if one instead uses functions of the form $\exp(- \alpha r^2)$.\mnote{This is due to the Gaussian product theorem, which states that the product of two multidimensional Gaussians is still a Gaussian function.}
+
+For each type of atomic orbital (s, p, d, etc.) one can write a corresponding Gaussian orbital obtained by multiplying a 3D spherical Gaussian function $\exp(-\alpha r^2)$ times a polynomial in the coordinates $x$, $y$, and $z$
+\begin{equation}
+\label{eq:primitive}
+x^l y^m z^n e^{-\alpha r^2}
+\end{equation}
+As we have seen, s orbitals are obtained from a combination of Gaussians
+\begin{equation}
+e^{-\alpha r^2}
+\end{equation}
+while p orbitals can be represented with a product of $x$, $y$, or $z$ and a Gaussian
+\begin{equation}
+x e^{-\alpha r^2}, y e^{-\alpha r^2}, z e^{-\alpha r^2}
+\end{equation}
+Atomic orbitals of d type can be formed by quadratic polynomials times a Gaussian.
+In this case there are six combinations
+\begin{equation}
+x^2 e^{-\alpha r^2}, y^2 e^{-\alpha r^2}, z^2 e^{-\alpha r^2},
+xy e^{-\alpha r^2}, yz e^{-\alpha r^2}, xz e^{-\alpha r^2}
+\end{equation}
+We call these d orbitals \emph{Cartesian Gaussians}, to distinguish them from \emph{spherical Gaussians}, the \emph{five} atomic d orbitals that are obtained when we solve the Schr\"{o}dinger equation.
+In a quantum chemistry code, integrals are first computed using Cartesian Gaussians and then these are combined to form spherical Gaussians.
+
+The Gaussians functions defined in Eq.~\eqref{eq:primitive} are called \emph{primitives}. To represent the correct shape of atomic orbitals several primitives are combined together using a fixed set of coefficients to form numerically accurate approximations to atomic orbitals.
+\begin{equation}
+\chi_\mu(\mathbf{r})
+\end{equation}
+
+
 \section{The linear combination of atomic orbitals approximation}
 A sensible choice for approximating the shape of orbitals is to use a basis that is as close as possible to the atomic orbitals of isolated atoms.
 The intuition here is that a lot of the details of the structure of atoms is preserved in molecules.
 So it makes sense to use atomic orbitals as building blocks for approximating molecular orbitals.
 This idea is called the \emph{linear combination of atomic orbitals} (LCAO), which you have already encountered when you applied molecular orbital theory to simple molecules like \ce{H2}, where the bonding orbital is the in-phase combination (superposition) of two 1s atomic orbitals, or when you were introduced to the concept of hybrid orbitals like the \ce{sp^3} hybrids of carbon in methane.
-
 This is not the only way quantum chemistry computations are done,\mnote{Other examples include using plane waves [$\exp(i \mathbf{k} \cdot \mathbf{r})$] and numerical grids to approximate the orbitals.} but it is by far the most common approach used in most quantum chemistry programs.
+
+%In principle, the best way to implement the LCAO approximation is to use atomic orbitals from very precise computations.
+%However, this is an impractical approach because some of the integrals that are required in Hartree--Fock theory and more advanced methods cannot be efficiently computed using 
+
+
 
 
 \centering{
+\captionof{table}{Convergence of the energy of the hydrogen atom as a function of the computational basis.
+The exact solution corresponds to the analytic solution of the Schr\"{o}dinger equation.}
 \begin{tabular}{@{} cccc @{}} % Column formatting, @{} suppresses leading/trailing space
 \toprule
 Basis    & Basis Functions & Energy (\Eh) & Error (\Eh) \\
@@ -172,8 +222,6 @@ cc-pV6Z &  91 & $-$0.499999245 & 0.000000755 \\
 Exact &  $\infty$ & $-$0.500000000 & 0.000000000\\
 \bottomrule
 \end{tabular}
-\captionof{table}{Convergence of the energy of the hydrogen atom as a function of the computational basis.
-The exact solution corresponds to the analytic solution of the Schr\"{o}dinger equation.}
 }
 
 \centering{
