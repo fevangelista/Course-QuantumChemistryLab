@@ -145,13 +145,6 @@ E_0 = V_0 + \frac{1}{2}  \sum_{v_\alpha} \omega_\alpha
 \end{equation}
 which again we see is higher than the energy at the bottom of the well.
 
-\mfigure{
-\centering{
-\includegraphics[width=1.75in]{img/h2o.pdf}
-}
-\captionof{figure}{Normal modes of water at the equilibrium geometry (\textbf{A}) and at the linear transition state (\textbf{B}) computed with Hartree--Fock theory and the def2-TZVP basis.}
-\label{fig:4:h2o}
-}
 The harmonic vibrational analysis introduced here can be performed with the majority of quantum chemistry codes.
 There are three main applications of a vibrational analysis
 \begin{myitems}
@@ -167,6 +160,25 @@ The eigenvectors of the mass-weighted Hessian tell us how the atoms are displace
 \item The \emph{sum} of the vibrational frequencies tell us information about the zero-point energy of a molecule.
 Accurate thermodynamic computations \emph{must} include the zero-point energy to include nuclear vibrational effects and ultimately achieve good agreement with experiment. We will come back to this topic later.
 \end{myitems}
+
+\begin{ibox}
+An important thing to remember is that a harmonic vibrational analysis is meaningful only if:
+\begin{enumerate}
+\item The geometry used to compute the frequencies is \emph{optimized}
+\item The computation of the Hessian is \emph{performed at the same level of theory}
+\end{enumerate}
+For example, if you compute the geometry with the B3LYP density functional using the def2-TZVP basis, then a subsequent frequency computation \emph{mustbe done at the same level of theory starting from the optimized geometry}.
+\end{ibox}
+
+\section{Example: vibrational analysis of water}
+
+\mfigure{
+\centering{
+\includegraphics[width=1.75in]{img/h2o.pdf}
+}
+\captionof{figure}{Normal modes of water at the equilibrium geometry (\textbf{A}) and at the linear transition state (\textbf{B}) computed with Hartree--Fock theory and the def2-TZVP basis.}
+\label{fig:4:h2o}
+}
 
 The example below shows the vibrational analysis of the water molecule using Hartree--Fock and the def2-TZVP basis.
 The vibrational analysis shows that six modes are classified as ``low-frequency'' because they are close to zero (post-proj low-frequency mode).
@@ -197,19 +209,34 @@ The calculation also tells us the IR activity (measured in km/mol) of each norma
   post-proj low-frequency mode:    0.0000i [cm^-1] (TR)
   post-proj low-frequency mode:    0.0001  [cm^-1] (TR)
 
-  Vibration                       7                   8                   9           
-  Freq [cm^-1]                1734.7180           4111.5086           4213.5468       
-  Irrep                           A1                  A1                  B2          
-  Reduced mass [u]              1.0835              1.0444              1.0839        
-  Force const [mDyne/A]         1.9210             10.4022             11.3375        
-  Turning point v=0 [a0]        0.2531              0.1674              0.1624        
-  RMS dev v=0 [a0 u^1/2]        0.1863              0.1210              0.1195        
-  IR activ [km/mol]            101.9411            17.0610             76.6343        
-  Char temp [K]               2495.8730           5915.5454           6062.3558       
-  ----------------------------------------------------------------------------------
-      1   O               -0.00 -0.00 -0.07    0.00  0.00  0.05   -0.00 -0.07  0.00   
-      2   H                0.00  0.42  0.56    0.00  0.59 -0.39   -0.00  0.57 -0.42   
-      3   H               -0.00 -0.42  0.56   -0.00 -0.59 -0.39    0.00  0.57  0.42   
+  Vibration                       7                   8
+  Freq [cm^-1]                1734.7180           4111.5086
+  Irrep                           A1                  A1
+  Reduced mass [u]              1.0835              1.0444
+  Force const [mDyne/A]         1.9210             10.4022
+  Turning point v=0 [a0]        0.2531              0.1674
+  RMS dev v=0 [a0 u^1/2]        0.1863              0.1210
+  IR activ [km/mol]            101.9411            17.0610
+  Char temp [K]               2495.8730           5915.5454
+  -------------------------------------------------------------
+      1   O               -0.00 -0.00 -0.07    0.00  0.00  0.05
+      2   H                0.00  0.42  0.56    0.00  0.59 -0.39
+      3   H               -0.00 -0.42  0.56   -0.00 -0.59 -0.39
+      
+      
+        Vibration                 9           
+  Freq [cm^-1]                4213.5468       
+  Irrep                           B2          
+  Reduced mass [u]              1.0839        
+  Force const [mDyne/A]        11.3375        
+  Turning point v=0 [a0]        0.1624        
+  RMS dev v=0 [a0 u^1/2]        0.1195        
+  IR activ [km/mol]             76.6343        
+  Char temp [K]               6062.3558       
+  -----------------------------------------
+      1   O               -0.00 -0.07  0.00   
+      2   H               -0.00  0.57 -0.42   
+      3   H                0.00  0.57  0.42   
 \end{verbatim}
 \end{small}
 
@@ -218,10 +245,9 @@ For each atom, each triplet of numbers under a normal mode indicate how much is 
 This information can be used to analyze the nature of the normal modes in a molecule.
 
 If we now repeat the same computation for linear water (after optimizing the geometry) we find seven low-frequency modes, two of which have a large imaginary frequency, $\omega$ = 1747.2 i cm$^{-1}$.
-These results tell us that linear water corresponds to a transition state.
-The two imaginary modes, are the two orthogonal bending mode that transform linear \ce{H-O-H} into the bent ground state of \ce{H2O}.
-
-\pagebreak
+The presence of these two imaginary modes tells us that linear water is a transition state.
+The two imaginary frequencies are two orthogonal bending modes that connect linear \ce{H-O-H} to the bent ground state.
+If we were to follow these modes and optimize the geometry, we would obtain back the bent structure.
 
 \begin{small}
 \begin{verbatim}
@@ -255,10 +281,15 @@ The two imaginary modes, are the two orthogonal bending mode that transform line
   RMS dev v=0 [a0 u^1/2]        0.1190              0.1135        
   IR activ [km/mol]             0.0000            829.5184       
   Char temp [K]               6120.4822          6722.2582       
- 
 \end{verbatim}
 \end{small}
 
+\begin{summary}
+\item The potential energy surface near stationary points can be approximated by a quadratic function of the energy.
+\item The Hessian of the energy (the matrix of second partial derivatives) provides information about the curvature of the PES. Its eigenvalues allow us to distinguish between (local) minima (all eigenvalues positive) and transition states (one or more negative eigenvalues).
+\item The solutions of the nuclear Schr\"{o}dinger equation near a stationary point (assuming a quadratic approximation to the energy) are called \emph{normal modes}.
+\item Normal modes tell information about the nature of stationary points, IR spectroscopy, and the zero-point energy.
+\end{summary}
 
 
 \end{document}
