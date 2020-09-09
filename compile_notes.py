@@ -12,7 +12,8 @@ root_dir = os.getcwd()
 
 for ch in chapters:
     print(ch)
-    os.chdir(ch)
+    chapter_dir = os.path.join('src',ch)
+    os.chdir(chapter_dir)
     os.system(f'xelatex {ch}.tex')
     os.system(f'bibtex {ch}.tex')
     os.system(f'xelatex {ch}.tex')
