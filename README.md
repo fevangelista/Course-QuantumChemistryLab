@@ -11,8 +11,8 @@ This repository collects:
 ## Chapters
 1. [Basics](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/01-Basics.pdf)
 1. [The Born-Oppenheimer approximation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/02-BornOppenheimer.pdf)
-1. [Hartree-Fock theory] (https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/03-Hartree-Fock.pdf)
-1. [Characterization of stationary points] (https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/04-StationaryPoints.pdf)
+1. [Hartree-Fock theory](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/03-Hartree-Fock.pdf)
+1. [Characterization of stationary points](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/04-StationaryPoints.pdf)
 1. [Geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/05-GeometryOptimization.pdf)
 
 
