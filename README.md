@@ -1,4 +1,4 @@
-# CHEM371-LW-QuantumChemistryLab
+# CHEM371-LW Quantum Chemistry Lab
 
 Welcome to the github repository of CHEM371-LW Quantum Chemistry Lab!
 
@@ -15,4 +15,5 @@ This repository collects:
 1. [Characterization of stationary points](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/04-StationaryPoints.pdf)
 1. [Geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/05-GeometryOptimization.pdf)
 
-
+## Notebooks
+1. [First computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation)
