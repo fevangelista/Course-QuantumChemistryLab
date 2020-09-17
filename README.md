@@ -20,3 +20,4 @@ This repository collects:
 1. [The input](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/01-TheInput)
 1. [Hartree-Fock](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/02-HartreeFock)
 1. [Characterization of stationary points](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/03-StationaryPoints)
+1. [Optimization of transition states](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/04-GeometryOptimization)
