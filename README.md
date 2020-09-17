@@ -15,5 +15,8 @@ This repository collects:
 1. [Characterization of stationary points](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/04-StationaryPoints.pdf)
 1. [Geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/05-GeometryOptimization.pdf)
 
-## Notebooks
+## Jupyter Notebooks
 1. [First computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation)
+1. [The input](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/01-TheInput)
+1. [Hartree-Fock](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/02-HartreeFock)
+1. [Characterization of stationary points](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/03-StationaryPoints)
