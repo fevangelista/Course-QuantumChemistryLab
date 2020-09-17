@@ -21,3 +21,5 @@ This repository collects:
 1. [Hartree-Fock](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/02-HartreeFock)
 1. [Characterization of stationary points](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/03-StationaryPoints)
 1. [Optimization of transition states](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/04-GeometryOptimization)
+
+# [Youtube videos](https://www.youtube.com/watch?v=bzwMcHKlUrI&list=PLECvNEnFI6_sTZpJhgEOT9Yk7UQittasl)
