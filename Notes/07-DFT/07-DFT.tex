@@ -206,7 +206,28 @@ The simplest example is the dissociation curve of \ce{H2}.
 Approximate DFT methods predict a dissociation energy of \ce{H2} that is too large.
 Strong correlation is an advanced topic and will considered more in detail in a later chapter of these notes.
 
-\section{Practical aspects of DFT computations}
+\section{The cost of DFT and practical aspects}
+
+The \emph{cost} of DFT computations is affected by several factors.
+For a basis set containing $K$ elements, most vanilla implementations of DFT for quantum chemistry have a cost that scales as $K^4$.
+A common technique to increase the speed of DFT is via \emph{density fitting} (DF) (also known as the resolution of the identity) or Cholesky decomposition.
+Density fitting is an method to approximate the \emph{two-electron integrals} $(\varphi_i \varphi_j | \varphi_k \varphi_l)$ that enter in DFT (and Hartree--Fock) theory.
+These integrals are defined as
+\begin{equation}
+(\varphi_i \varphi_j | \varphi_k \varphi_l) = 
+\int d\mathbf{r}_1 \, d\mathbf{r}_2 \, \frac{\varphi^*_i(\mathbf{r}_1) \varphi_j(\mathbf{r}_1) \varphi^*_k(\mathbf{r}_2) \varphi_l(\mathbf{r}_2)}{r_{12}}
+\end{equation}
+There are $K^4$ of these type of integrals, because for each index ($i$, $j$, $k$, $l$) we can choose the orbital in $K$ different ways.
+In density fitting, these two-electron integrals are approximated as the product of quantities that depend only on three indices ($L_{ij}^{Q}$)
+\begin{equation}
+(\varphi_i \varphi_j | \varphi_k \varphi_l) = \sum_Q^M L_{ij}^{Q} L_{kl}^{Q}
+\end{equation}
+To compute the quantities $L_{ij}^{Q}$, density fitting uses an \emph{auxiliary basis set}.
+Therefore, to use density fitting you must also specify an auxiliary basis set.
+For many families of basis sets (cc-pV$X$Z and Karlsruhe) there are corresponding auxiliary basis sets (usually they have the same name, but they carry the suffix -JK).
+Typically the size of the auxiliary basis set is about 3 times larger than a conventional basis set.
+The main advantage of density fitting is to reduce the cost of DFT computations that employ local functionals from $K^4$ to $K^3$.
+Density fitting also reduces the cost of  hybrid functionals because it lowers the memory and disk storage requirements (since only about 3$K^3$ integrals have to be computed and stored).
 
 In addition to selecting a basis set, DFT computations require choosing an \emph{integration grid}.
 Integration grids are necessary to evaluate integrals of the exchange-correlation functional (and its corresponding potential).
