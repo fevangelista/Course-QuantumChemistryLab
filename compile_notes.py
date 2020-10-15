@@ -9,7 +9,8 @@ chapters = ['01-Basics',
             '04-StationaryPoints',
             '05-GeometryOptimization',
             '06-BasisSets',
-            '07-DFT']
+            '07-DFT',
+            '08-OpenShells']
 
 root_dir = os.getcwd()
 
