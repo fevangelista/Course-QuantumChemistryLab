@@ -16,6 +16,7 @@ This repository collects:
 1. [Geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/05-GeometryOptimization.pdf)
 1. [Basis sets](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/06-BasisSets.pdf)
 1. [DFT](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/07-DFT.pdf)
+1. [Open shells](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/08-OpenShells.pdf)
 
 ## Jupyter Notebooks
 1. [First computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation)
