@@ -67,7 +67,7 @@ For a system containing $N$ electrons, the FCI wave function contains excitation
 \captionof{table}{Water. Convergence of the energy of truncated CI methods to the FCI limit as a function of the maximum excitation level. These results use the DZ basis and $r_\text{OH}$ = 1.0 \AA{}, $\theta_\text{H-O-H}$ = 104.5 degrees.}
 \begin{tabular}{@{} lrr @{}}
 \toprule
-Method & Determinants & $E_\text{corr}$ \\
+Method & Determinants & $E_\text{corr}$ (\Eh) \\
 \midrule
 HF & 1 & $-${\bf76}.005679 \\
 CIS & 1 & $-${\bf76}.005679 \\
@@ -92,7 +92,7 @@ Triply and higher-excited determinants are responsible for correlation effects o
 \emph{One issue with the FCI expansion is that its size grows exponentially with the number of electrons!}
 Whenever a method has exponential scaling, it means that you will quickly run out of computational resources.
 To illustrate this point, let's assume that a method that runs in $2^N$ seconds, where $N$ is the number of electrons.
-A computation on four electrons would take 16 seconds, one one eight electrons a bit more that four minutes, one on 16 electrons would take 18 hours, and a computation on 32 electrons would take 136 years!
+A computation on four electrons would take 16 seconds, one on eight electrons a bit more that four minutes, one on 16 electrons would take 18 hours, and a computation on 32 electrons would take 136 years!
 That is why we cannot just apply the FCI method to problem in chemistry.
 
 
