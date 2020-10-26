@@ -11,7 +11,8 @@ chapters = ['01-Basics',
             '06-BasisSets',
             '07-DFT',
             '08-OpenShells',
-            '09-CorrelatedMethods']
+            '09-CorrelatedMethods',
+            '10-Thermochemistry']
 
 root_dir = os.getcwd()
 

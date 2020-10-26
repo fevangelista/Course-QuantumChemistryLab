@@ -18,6 +18,7 @@ This repository collects:
 1. [DFT](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/07-DFT.pdf)
 1. [Open shells](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/08-OpenShells.pdf)
 1. [Correlated Methods](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/09-CorrelatedMethods.pdf)
+1. [Thermochemistry](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/10-Thermochemistry.pdf)
 
 ## Jupyter Notebooks
 1. [First computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation)
