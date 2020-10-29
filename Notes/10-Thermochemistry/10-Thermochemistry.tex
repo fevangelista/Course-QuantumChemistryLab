@@ -79,9 +79,9 @@ Ideally, both methods should give the same result. However, since most atoms are
 Therefore, the first route is preferable, although you can still run into issues with the computation of the individual atoms.
 
 In most cases, we are interested in describing reactions in which only a few bonds are broken and formed.
-This situation is easier for quantum chemistry, because there is greater error cancellation.
+This situation is easier for quantum chemistry, because computing similar systems leads to better error cancellation.
 Chemical reactions can be classified according to the type and number of bonds that are broken/formed.
-A classic classification is
+A classification often used for organic reactions is
 \begin{itemize}
 \item \emph{Isogyric reactions}, which conserve the number of electron pairs.
 For example, the dissociation reaction
@@ -155,23 +155,25 @@ In the case of correlated methods, one fits the energy increment due to correlat
 E_\mathrm{corr}(X) = E_\mathrm{corr}(\infty) + \alpha X^{-3}
 \end{equation}
 
+
 Table~\ref{fig:thermo:ncco} shows the convergence of various contributions to the total energy for basis sets of increasing size and the results obtained by extrapolating the energies.
 Note that the HF contribution computed with the cc-pVTZ basis is only 0.16 \kcal away from the complete basis set (CBS) limit.
 The combined contribution from CCSD and CCSD(T) computed with the same basis differs from the CBS answer by 0.36 \kcal.
 When using a cc-pV5Z basis, the HF energy is converged to the CBS limit, while the contribution from the correlation energy is still 0.08 \kcal off.
 
-\mfigure{
-\centering{
-\includegraphics[width=2.00in]{img/focalpoint.pdf}
-}
-\captionof{figure}{This plot illustrates .}
-\label{fig:thermo:highaccuracy}
-}
 
 A more sophisticated to reduce the dependency of the correlation with respect to $X$ is to use \emph{explicitly correlated methods}. These are modified versions of MP2, CCSD, CCSD(T), etc. that explicitly include terms in the wave function that depend on the interelectronic distance $r_{12} = | \mathbf{r}_1 - \mathbf{r}_2|$. These methods have a basis set error that scales approximately as $X^{-7}$
 This class of $r_{12}$ methods is implemented in only a few quantum chemistry codes because of the added complexity required by the extra terms.
 
 \section{Treatment of the correlation energy}
+
+\mfigure{
+\centering{
+\includegraphics[width=2.00in]{img/focalpoint.pdf}
+}
+\captionof{figure}{To reach the exact solution of the (electronic) Schr\"{o}dinger equation it is necessary to simultaneously improve both the quality of the basis set (by including more basis functions) and the treatment of the correlation energy (for example, by including higher excited determinants).}
+\label{fig:thermo:highaccuracy}
+}
 
 The second most important aspect to consider when aiming to achieve high accurate computational results is electron correlation.
 Correlated methods offer a natural hierarchy to converge computations towards the exact limit (FCI).
@@ -189,18 +191,18 @@ In the case of DFT computations there is no systematic way to improve an answer 
 
 \section{Vibrational corrections and entropic terms}
 
-Up to this point we have only considered how to improve the approximation of the electronic wave function.
-An important class of corrections to the energy that should be included in computations of the thermodynamic properties of molecules should include \emph{corrections due to the zero-point vibrational energy (ZPVE)}.
-Vibrational corrections account for the energy of the nuclei.
-In the Born--Oppenheimer approximation this energy is computed separately by solving the nuclear Schr\"{o}dinger equation.
-
 \mfigure{
 \centering{
 \includegraphics[width=2.00in]{img/zpve}
 }
-\captionof{figure}{Dissociation curve for a diatomic molecule. The zero-point corrected dissociation energy ($D_0$) is the difference between the energy of the dissociated molecule and the first vibrational energy level.}
+\captionof{figure}{Dissociation curve for a diatomic molecule. The dissociation energy corrected for the zero-point energy ($D_0$) is the difference between the energy of the dissociated molecule and the energy of the ground vibrational level.}
 \label{fig:thermo:zpve}
 }
+
+Up to this point we have only considered how to improve the approximation of the electronic wave function.
+An important class of corrections to the energy that should be included in computations of the thermodynamic properties of molecules should include \emph{corrections due to the zero-point vibrational energy (ZPVE)}.
+Vibrational corrections account for the energy of the nuclei.
+In the Born--Oppenheimer approximation this energy is computed separately by solving the nuclear Schr\"{o}dinger equation.
 
 Figure~\ref{fig:thermo:zpve} shows the importance of zero-point vibrational corrections for the case of a diatomic molecule.
 When computing the dissociation energy it is important to keep into account the fact that the energy of the molecule is not the bottom of the potential energy well, which corresponds to the electronic energy, the energy of the electrons alone.
@@ -217,11 +219,21 @@ E_0 = V_0 + \frac{1}{2}  \sum_{v_\alpha} \omega_\alpha
 \end{equation}
 where $\omega_\alpha$ is the energy spacing between vibrational levels for the normal mode $\alpha$ (this quantity is related to the vibrational frequency of a normal mode).
 
-When computing the energy change for a reaction one need to account for the ZPVE for both the reactant and products in the following way
+\mfigure{
+\centering{
+\includegraphics[width=2.00in]{img/zpve2}
+}
+\captionof{figure}{Under the Born--Oppenheimer approximation, the change in energy in a reaction is the sum of the electronic energy difference ($\Delta E^\text{el}$) and the change in zero-point vibrational energy ($\Delta \text{ZPVE}$).}
+\label{fig:thermo:zpve2}
+}
+
+When computing the energy change for a reaction one need to account for the ZPVE for both the reactant and products.
+This point is illustrated in Fig.~\ref{fig:thermo:zpve2}, where we consider the case of a reaction that proceeds via a transition state in one dimension.
+The change in energy corresponding to this reaction is given by the sum of the electronic energy difference ($\Delta E^\text{el}$) plus the difference between the zero-point vibrational energies ($\Delta \text{ZPVE}$)
 \begin{equation}
 \Delta E = E_\text{prod} - E_\text{react} = 
-E^\text{el}_\text{prod} - E^\text{el}_\text{react}
-+ \text{ZPVE}_\text{prod} - \text{ZPVE}_\text{react}
+\underbrace{E^\text{el}_\text{prod} - E^\text{el}_\text{react}}_{\Delta E^\text{el}}
++ \underbrace{\text{ZPVE}_\text{prod} - \text{ZPVE}_\text{react}}_{\Delta \text{ZPVE}}
 \end{equation}
 In the case of transition state computations, one of the vibrational frequencies is imaginary. \emph{This mode is excluded from the computation of the ZPVE correction for the transition state}.
 
@@ -233,11 +245,21 @@ U(T) = E^{\mathrm{el}} + E^{\mathrm{ZPVE}}
 + E^{\mathrm{vib}} + E^{\mathrm{rot}} + E^{\mathrm{trans}}
 \end{equation}
 This energy depends on the temperature and it is usually computed at 298.15 K.
-Similarly, it is possible to add corrections to obtain the \emph{enthalpy} [$H = U + PV$] and the \emph{Gibbs free energy} [$G = H - TS$].
-These corrections are computed from using the harmonic approximation for the vibrational contribution.
-A note of caution is important. From the psi4 manual:
+At $T  = 0 $ K the internal energy is equal just to the sum of the electronic and ZPVE
+\begin{equation}
+U(0) = E^{\mathrm{el}} + E^{\mathrm{ZPVE}}
+\end{equation}
+\emph{Quantum computational studies typically report both the electronic energy $ E^{\mathrm{el}}$ and the ZPVE corrected value $E^{\mathrm{el}} + E^{\mathrm{ZPVE}}$.}
+
+A frequency computation also provides values for the \emph{enthalpy} [$H = U + pV$] and the \emph{Gibbs free energy} [$G = H - TS$].
+The enthalpy corresponds to the heat adsorbed or emitted in a reaction under constant pressure.
+This quantity is used to compute reaction enthalpies and enthalpies of formation of molecules.
+The free energy accounts for both the change in enthalpy and entropy and it can be used to characterize whether or not a process is spontaneous ($\Delta G < 0$).
+
+There are two important point to remember: 1) Thermodynamical corrections are computed using the harmonic approximation, and 2) that a computation yields the absolute value of these quantities.
+A note of caution is important. From the Psi4 manual:
 \begin{quote}
- It is important to know that Psi4, like any other quantum chemistry program, does \textit{not} compute the usual enthalpies, entropies, or Gibbs free energies of \textit{formation} provided by most reference books. Instead, quantum chemistry programs compute “absolute” thermodynamic properties relative to infinitely separated nuclei and electrons, not “formation” values relative to elements in their standard states. If you are computing thermodynamic differences, like a reaction enthalpy computed as the enthalpy of the products minus the enthalpy of the reactants, then these “absolute” enthalpies are perfectly valid and usable. However, they cannot be mixed and matched with enthalpies of formation from reference books, since the zero of energy is not the same. Additionally, the “thermal energies” reported in kcal/mol are the finite-temperature \textit{corrections} to the electronic total energy, and not the overall thermal energies themselves.
+ It is important to know that Psi4, like any other quantum chemistry program, does \textit{not} compute the usual enthalpies, entropies, or Gibbs free energies of \textit{formation} provided by most reference books. Instead, quantum chemistry programs compute “absolute” thermodynamic properties relative to infinitely separated nuclei and electrons, not “formation” values relative to elements in their standard states. If you are computing thermodynamic differences, like a reaction enthalpy computed as the enthalpy of the products minus the enthalpy of the reactants, then these “absolute” enthalpies are perfectly valid and usable. However, they cannot be mixed and matched with enthalpies of formation from reference books, since the zero of energy is not the same.
 \end{quote}
 
 
@@ -251,13 +273,13 @@ The simplest form of anharmonic corrections are obtained by applying vibrational
 
 The last two sources of errors arise from approximations in the Hamiltonian.
 As we have seen in the early chapters, the Born--Oppenheimer or fixed nuclei approximation is one of the first simplifications made when solving the Schr\"{o}dinger equation for atoms and molecules.
-The BO approximation is most effective when the ratio between the electrons and nuclei, $m_e \ M_i$ is small.
-This ratio has the largest value for the hydrogen since it is the lightest nucleus.
+The BO approximation is most effective when the ratio between the electrons and nuclei, $m_e / M_i$ is small.
+This ratio has the largest value for the hydrogen atom ($m_e / M_i \approx 1/1836$) since it is the lightest nucleus.
 In most cases, the BO approximation is extremely accurate and there is no need to compute corrections.
 However, there are problems in chemistry where the BO breaks down.
 This is the case especially when the electronic and nuclear degrees of freedom in a molecule are strongly coupled (e.g. proton-coupled electron transfer).
 
-For most of the chemistry of the first 2-3 rows of the periodic table relativistic effects play a negligible or small role.
+For most of the chemistry of the first 2-3 rows of the periodic table (H--Ar), relativistic effects play a negligible or small role.
 Therefore, the effects of relativity are typically ignored.
 However, relativistic effects gradually become more important as we move to nuclei with larger nuclear charge and can have make a significant difference in the physical/chemical properties of elements.\mnote{Famous examples are the color of gold (predicted to be gray when relativistic effects are ignored) and the low melting temperature of mercury.}
 
