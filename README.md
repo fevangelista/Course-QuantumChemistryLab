@@ -31,7 +31,8 @@ This repository collects:
 1. [Modeling interactions (SAPT and PCM)](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/11-ModelingInteractions)
 
 ## Jupyter Assignments
-1. [Geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/Assignment-01-GeometryOptimization/Assignment-01-GeoometryOptimization.ipynb)
+1. [Geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/01-GeometryOptimization/01-GeoometryOptimization.ipynb)
+1. [Isomer stability](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/02-IsomerStability/02-IsomerStability.ipynb)
 
 # [Youtube videos](https://www.youtube.com/watch?v=bzwMcHKlUrI&list=PLECvNEnFI6_sTZpJhgEOT9Yk7UQittasl)
 
