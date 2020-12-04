@@ -33,6 +33,7 @@ This repository collects:
 ## Jupyter Assignments
 1. [Geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/01-GeometryOptimization/01-GeoometryOptimization.ipynb)
 1. [Isomer stability](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/02-IsomerStability/02-IsomerStability.ipynb)
+1. [Hartree–Fock theory](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/03-HartreeFockTheory/03-HartreeFockTheory.ipynb)
 
 # [Youtube videos](https://www.youtube.com/watch?v=bzwMcHKlUrI&list=PLECvNEnFI6_sTZpJhgEOT9Yk7UQittasl)
 
@@ -40,4 +41,6 @@ This repository collects:
 1. Read notes on the [basics](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/01-Basics.pdf) of quantum chemistry. Go through the [first computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation) tutorial.
 1. Read notes on the [Born-Oppenheimer approximation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/01-Basics.pdf) of quantum chemistry.  Go through the [input](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/01-TheInput) tutorial and work on the [geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/Assignment-01-GeometryOptimization/Assignment-01-GeoometryOptimization.ipynb) assignment.
 1. Work on the [isomer stability](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/02-IsomerStability/02-IsomerStability.ipynb) assignment.
+1. Read the [Hartree-Fock theory](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/03-Hartree-Fock.pdf), then work on the [Hartree-Fock theory](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/02-HartreeFock) tutorial.
+1. Read the note chapter on [stationary points](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/03-StationaryPoints) and work on the [corresponding tutorial](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/04-StationaryPoints.pdf). Once you are done, work on the [Hartree–Fock theory](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/03-HartreeFockTheory/03-HartreeFockTheory.ipynb) assignment, which covers both HF and stationary points.
 
