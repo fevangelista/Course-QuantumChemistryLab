@@ -31,10 +31,13 @@ This repository collects:
 1. [Modeling interactions (SAPT and PCM)](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/11-ModelingInteractions)
 
 ## Jupyter Assignments
-1. [Geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/Assignment-01-GeometryOptimization/Assignment-01-GeoometryOptimization.ipynb)
+1. [Geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/01-GeometryOptimization/01-GeoometryOptimization.ipynb)
+1. [Isomer stability](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/02-IsomerStability/02-IsomerStability.ipynb)
 
 # [Youtube videos](https://www.youtube.com/watch?v=bzwMcHKlUrI&list=PLECvNEnFI6_sTZpJhgEOT9Yk7UQittasl)
 
 ## Getting started
 1. Read notes on the [basics](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/01-Basics.pdf) of quantum chemistry. Go through the [first computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation) tutorial.
 1. Read notes on the [Born-Oppenheimer approximation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/01-Basics.pdf) of quantum chemistry.  Go through the [input](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/01-TheInput) tutorial and work on the [geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/Assignment-01-GeometryOptimization/Assignment-01-GeoometryOptimization.ipynb) assignment.
+1. Work on the [isomer stability](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/02-IsomerStability/02-IsomerStability.ipynb) assignment.
+
