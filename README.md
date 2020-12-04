@@ -6,7 +6,8 @@ This is an introductory class on quantum chemistry. It covers practical aspects 
 
 This repository collects:
 - The notes from this class. PDF files for the chapters can be found in the [pdfs folder](pdfs). These notes are typed in XeLaTeX and are freely available for anyone to download and use (under a Creative Commons license). 
-- The notebooks used in class to introduce students to psi4. These can be found in [the Notebooks folder](Notebooks). If you have psi4 installed you can practice along doing these computations.
+- The tutorial used in class to introduce students to psi4. These can be found in [the Notebooks folder](Notebooks). If you have psi4 installed you can practice along doing these computations.
+- The assignments used in class. These can be found in [the Assignments folder](Assignments).
 
 ## Notes
 1. [Basics](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/01-Basics.pdf)
