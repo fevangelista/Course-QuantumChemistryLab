@@ -25,7 +25,7 @@ This repository collects:
 ## Jupyter Tutorials
 1. [First computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation)
 1. [The input](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/01-TheInput)
-1. [Hartree-Fock](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/02-HartreeFock)
+1. [Hartree-Fock theory](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/02-HartreeFock)
 1. [Characterization of stationary points](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/03-StationaryPoints)
 1. [Optimization of transition states](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/04-GeometryOptimization)
 1. [Modeling interactions (SAPT and PCM)](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/11-ModelingInteractions)
