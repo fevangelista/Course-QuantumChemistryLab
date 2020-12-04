@@ -27,3 +27,13 @@ for ch in chapters:
     os.system(f'xelatex {ch}.tex')
     copy(f'{ch}.pdf', f'../../pdfs')
     os.chdir(root_dir)
+
+main_dir = os.path.join('Notes','Main')
+main = 'chem371-notes'
+os.chdir(main_dir)
+os.system(f'xelatex {main}.tex')
+os.system(f'bibtex {main}.tex')
+os.system(f'xelatex {main}.tex')
+os.system(f'xelatex {main}.tex')
+copy(f'{main}.pdf', f'../../pdfs')
+os.chdir(root_dir)
