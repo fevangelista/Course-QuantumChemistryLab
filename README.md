@@ -21,7 +21,7 @@ This repository collects:
 1. [Thermochemistry](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/10-Thermochemistry.pdf)
 1. [Modeling interactions (SAPT and PCM)](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/11-ModelingInteractions.pdf)
 
-## Jupyter Notebook Tutorials
+## Jupyter Tutorials
 1. [First computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation)
 1. [The input](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/01-TheInput)
 1. [Hartree-Fock](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/02-HartreeFock)
