@@ -39,5 +39,5 @@ This repository collects:
 ## Getting started
 1. Read notes on the [basics](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/01-Basics.pdf) of quantum chemistry. Go through the [first computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation) tutorial.
 1. Read notes on the [Born-Oppenheimer approximation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/01-Basics.pdf) of quantum chemistry.  Go through the [input](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/01-TheInput) tutorial and work on the [geometry optimization](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/Assignment-01-GeometryOptimization/Assignment-01-GeoometryOptimization.ipynb) assignment.
-1. Work on the [](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/02-IsomerStability/02-IsomerStability.ipynb) assignment.
+1. Work on the [isomer stability](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/Assignments/02-IsomerStability/02-IsomerStability.ipynb) assignment.
 
