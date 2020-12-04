@@ -5,7 +5,7 @@ Welcome to the github repository of CHEM371-LW Quantum Chemistry Lab!
 This is an introductory class on quantum chemistry that covers both some theory and practical aspects of computational quantum chemistry.
 
 This repository collects:
-- The notes from this class. PDF files for the chapters can be found in the [pdfs folder](pdfs). These notes are typed in XeLaTeX and are freely available for anyone to download and use (under a Creative Commons license). 
+- The notes from this class. PDF files for the chapters can be found in the [pdfs folder](pdfs). These notes are typed in XeLaTeX and are freely available for anyone to download and use (under a Creative Commons license). The notes use the [Noto Sans](https://fonts.google.com/specimen/Noto+Sans) and [Barlow Condensed](https://fonts.google.com/specimen/Barlow+Condensed) open-source fonts.
 - The tutorial used in class to introduce students to psi4. These can be found in [the Notebooks folder](Notebooks). If you have psi4 installed you can practice along doing these computations.
 - The assignments used in class. These can be found in [the Assignments folder](Assignments).
 
