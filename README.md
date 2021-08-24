@@ -1,4 +1,4 @@
-# CHEM371-LW Quantum Chemistry Lab
+# Quantum Chemistry Lab
 
 Welcome to the github repository of CHEM371-LW Quantum Chemistry Lab!
 
