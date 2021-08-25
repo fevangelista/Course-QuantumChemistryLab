@@ -41,7 +41,29 @@ This equation contains three elements:
 \item The \emph{wave function} $\Psi$. This is a function of the coordinates of all the particle in a quantum system and contains all the information necessary to describe the state of a quantum system.
 \item The \emph{energy} $E$. This is the energy (a real number) that corresponds to the wave function $\Psi$.
 \end{myitems}
-The Schr\"{o}dinger is an \emph{eigenvalue} equation, because it says that when we apply the Hamiltonian to the wave function we get back the wave function times a number (the energy).
+The Schr\"{o}dinger is an \emph{eigenvalue} equation, because it falls under the category of equations like
+\begin{equation}
+\hat{O} f(x) = \lambda f(x)
+\end{equation}
+where the unknown function $f(x)$ and number $\lambda$ are such that when the operator $\hat{O}$ is applied to $f(x)$ we get back $f(x)$ times a number.
+%says that when we apply the Hamiltonian operator $\hat{H}$ to the wave function $\Psi$ we get back the wave function times a number (the energy).
+\begin{example}[Eigenvalue equations]
+As an example consider the derivative operator $\hat{O} = \frac{d}{dx}$.
+The eigenfunctions of this operator then satisfy the following equation
+\begin{equation}
+\frac{d}{dx} f(x) = \lambda f(x)
+\end{equation}
+This is a simple differential equation that has solution
+\begin{equation}
+f(x) = c e^{\lambda x}.
+\end{equation}
+We can verify this by plugging in $f(x)$ the first equation and noting that the left and right hand sides are equal
+\begin{equation}
+\frac{d}{dx} c e^{\lambda x} = \lambda c e^{\lambda x} \Rightarrow 
+c \lambda e^{\lambda x} = c \lambda e^{\lambda x} 
+\end{equation}
+\end{example}
+
 
 For a molecule, the wave function depends on the coordinates of the electrons and nuclei.
 For example, for one electron the wave function is a function of the electron position vector $\mathbf{r} = (x,y,z)$ specified by the the Cartesian coordinates $x,y,z$, $\Psi(\mathbf{r})$.
