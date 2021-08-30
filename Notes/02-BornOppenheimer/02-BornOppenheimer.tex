@@ -35,8 +35,8 @@ where to keep these expression compact we have indicated the coordinates of all 
 
 This equation says that the total wave function can be written as a wave function for the electrons ($\Psi^\mathrm{el}$) times the wave function for the nuclei ($\Psi^\mathrm{nuc}$).
 Note that $\Psi^\mathrm{nuc}(\mathbf{R} )$ only depends on the coordinate of the nuclei $\mathbf{R}$ (nuclei are like the cows, they can almost completely ignore the exact position of the electrons).
-In contrast, the electron wave function $\Psi_{\mathbf{R}}^\mathrm{el}(\mathbf{r})$ depends both on the coordinate of the nuclei and the electrons.
-The way we should think of the electronic wave function is as providing information of all electrons \emph{for a given position} of the nuclei $ \mathbf{R}_1,  \mathbf{R}_2,\ldots$ (in our analogy, the electrons are like the flies, and their position depends significantly on the position of the cows).
+In contrast, the electron wave function $\Psi_{\mathbf{R}}^\mathrm{el}(\mathbf{r})$ depends both on the coordinates of the nuclei and the electrons.
+The way we should think of the electronic wave function is as providing information about all the electrons \emph{for a given position} of the nuclei $ \mathbf{R}_1,  \mathbf{R}_2,\ldots$ (in our analogy, the electrons are like the flies, and their position depends significantly on the position of the cows).
 We say that in the BO approximation the electronic wave function depends \emph{parametrically} on the nuclear coordinates.
 
 When we assume the Born--Oppenheimer approximation, the Hamiltonian for the electrons takes a simpler form
@@ -106,7 +106,7 @@ Mathematically, both equilibrium geometries and transition states correspond to 
 What distinguishes an equilibrium geometry and a transition state is the \emph{curvature} of the potential energy curve at $r^*$.
 For equilibrium geometries, the energy is a minimum and the curvature is positive, that is, the second derivative of the potential is positive
 \begin{equation}
-\text{At a minimum } r^*: \quad \left.\frac{d^2 E(r)}{dr^2}\right|_{r = r^*} > 0
+\text{At a minimum } r_e: \quad \left.\frac{d^2 E(r)}{dr^2}\right|_{r = r_e} > 0
 \end{equation}
 A transition state instead corresponds to a negative curvature or negative second derivative
 \begin{equation}
@@ -137,11 +137,22 @@ These plots also show a the minimum energy reaction path that connects \ce{A + B
 To go from \ce{A\bond{...}B-C} to \ce{A-B\bond{...}C}, the molecule has to overcome a reaction barrier.
 As you can see from the plot in \textbf{C}, the height of this barrier depends on the direction of the reaction.
 
-One aspect that it is important to point out that the connection between Lewis structures that indicate the order of a bond, unpaired electrons, etc. to the structure of a PES is complicated.
- The only thing we can do is arrange the atoms A, B, and C in a certain position and compute their energy.
-When we compute the potential energy surface of the hypothetical molecule ABC, we simply place atoms A, B, and C in a certain spatial arrangement and compute the molecular energy, without providing the bond order between atoms or atomic charges.
-This means that we cannot use the Schr\"{o}dinger equation to calculate the energy of a particular Lewis structure like A=B$^+$--C$^-$ or A--B--C.
-In computational chemistry, information about bonding and charges must be extracted from an analysis of the electronic wave function.
+\section{Where are the bonds?}
+
+When we first encounter the concepts of BO approximation and potential energy surfaces, it is natural to try to embrace this new view with the help of concepts of bonding that we have acquired earlier.
+It is important to remember that bonds and atomic charges are interpretative concepts that are helpful to rationalize the behavior of molecules in chemistry, but do not correspond to well-defined quantum mechanical observables.
+By this we mean that there is no physical observable and a corresponding operator $\hat{O}$ that we can directly link to the concepts of bonds and charges and use to extract these quantities from a quantum chemistry computation.
+
+Therefore, it is important to be aware that when we solve the electronic Schr\"{o}dinger equation of an hypothetical molecule like ABC, what we can control is only the position of the atoms A, B, and C.
+This implies that we cannot computed the energy of a specific Lewis structure like A=B$^+$--C$^-$ or A--B--C.
+However, once we specify a geometry and solve the electronic Schr\"{o}dinger equation, we can then analyze the electronic wave function and try to attribute it to particular Lewis structure like A=B$^+$--C$^-$ or A--B--C.
+This process is indicated schematically below
+
+\begin{ibox}
+\begin{center}
+$\text{Specify geometry} \rightarrow \text{compute } E(\mathbf{R}) \text{ and } \Psi_\mathbf{R}(\mathbf{r}) \rightarrow \text{analyze } \Psi_\mathbf{R}(\mathbf{r})$
+\end{center}
+\end{ibox}
 
 \mfigure{
 \centering{
