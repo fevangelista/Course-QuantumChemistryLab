@@ -26,7 +26,7 @@ A good analogy is that of flies (electrons) that move around cows (nuclei). The 
 \captionof{figure}{The fly/cow analogy of the Born--Oppenheimer approximation.}
 }
 
-In the fixed nuclei approximation, also known as \emph{Born--Oppenheimer approximation}, we separate the wave function of electron and nuclei in the following way
+In the fixed nuclei approximation, also known as \emph{Born--Oppenheimer (BO) approximation}, we separate the wave function of electron and nuclei in the following way
 \begin{iequation}
 \Psi(\mathbf{r}, \mathbf{R})
 \approx \Psi_{\mathbf{R}}^\mathrm{el}(\mathbf{r}) \Psi^\mathrm{nuc}(\mathbf{R})
@@ -34,9 +34,10 @@ In the fixed nuclei approximation, also known as \emph{Born--Oppenheimer approxi
 where to keep these expression compact we have indicated the coordinates of all electrons and nuclei with a single variable, that is, $\mathbf{r} = (\mathbf{r}_1, \mathbf{r}_2, \ldots)$ and $\mathbf{R} = (\mathbf{R}_1, \mathbf{R}_2, \ldots)$.
 
 This equation says that the total wave function can be written as a wave function for the electrons ($\Psi^\mathrm{el}$) times the wave function for the nuclei ($\Psi^\mathrm{nuc}$).
-Note that $\Psi^\mathrm{nuc}$ only depends on the coordinate of the nuclei (nuclei are like the cows, they can almost completely ignore the exact position of the electrons).
-In contrast, the electron wave function depends both on the coordinate of the nuclei and the electrons.
-However, the way you should think of this as a function of the electron coordinates that depends \emph{parametrically} on the position of the nuclei $ \mathbf{R}_1,  \mathbf{R}_2,\ldots$ (in our analogy, the electrons are like the flies, their position depends significantly on the position of the cows).
+Note that $\Psi^\mathrm{nuc}(\mathbf{R} )$ only depends on the coordinate of the nuclei $\mathbf{R}$ (nuclei are like the cows, they can almost completely ignore the exact position of the electrons).
+In contrast, the electron wave function $\Psi_{\mathbf{R}}^\mathrm{el}(\mathbf{r})$ depends both on the coordinate of the nuclei and the electrons.
+The way we should think of the electronic wave function is as providing information of all electrons \emph{for a given position} of the nuclei $ \mathbf{R}_1,  \mathbf{R}_2,\ldots$ (in our analogy, the electrons are like the flies, and their position depends significantly on the position of the cows).
+We say that in the BO approximation the electronic wave function depends \emph{parametrically} on the nuclear coordinates.
 
 When we assume the Born--Oppenheimer approximation, the Hamiltonian for the electrons takes a simpler form
 \begin{equation}
@@ -51,16 +52,35 @@ V_\mathrm{nn} = \frac{1}{4\pi \epsilon_0}  \sum_{i < j}^{\mathrm{nuclei}} \frac{
 
 The wave functions for the electronic in the BO approximation satisfies the following Schr\"{o}dinger equation
 \begin{equation}
+\label{eq:electronic_SE}
 \hat{H}^\mathrm{el}\Psi_{\mathbf{R}}^\mathrm{el}(\mathbf{r}) =
 E(\mathbf{R})
 \Psi_{\mathbf{R}}^\mathrm{el}(\mathbf{r})
 \end{equation}
-which yields the potential energy $E(\mathbf{R})$, a quantity that depends on the position of the nuclei.
+which yields the potential energy $E(\mathbf{R})$, a quantity that depends on the position of the nuclei
+\begin{equation}
+E(\mathbf{R})= E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)
+\end{equation}
+A useful way to think of this quantity is as describing a \emph{potential energy surface}, that is, a high-dimensional surface that relates a molecular structure (described by nuclear coordinates $\mathbf{R}_1,  \mathbf{R}_2,\ldots$) to its energy.
 
-The  potential energy $E(\mathbf{R})$ is the central quantity that computational chemists aim to obtain when doing a quantum chemistry computation.
-Once you have $E(\mathbf{R})$ you can determine the structure of a molecule, the way it reacts.
-If we then solve the Schr\"{o}dinger equation for the nuclei using the potential energy $E(\mathbf{R})$, we can even obtain information about the vibrational (IR) spectroscopy of molecules. 
-We will come back to this topic in a later chapter.
+The  potential energy $E(\mathbf{R})$ \emph{is the central quantity that computational chemists aim to obtain when doing a quantum chemistry computation}.
+This quantity should be understood as accounting for the energy of the electrons interacting with the nuclei at a given molecular geometry.
+The potential energy $E(\mathbf{R})$ provides all the information we need to determine the structure of a molecule, the way it vibrates and rotates, and in most cases also the way it reacts.
+We will come back to some of these topics in later chapters.
+
+The Born--Oppenheimer approximation and the potential energy are fundamental concepts that are at the basis of how we understand and talk about molecules in chemistry.
+Even though you may not realize it, you are already very familiar with the BO approximation because it forms the basis of how we talk about the structure of molecules in introductory chemistry courses.
+When we say, for example, that a water molecule in the gas phase has a O-H bond length of  0.957 \AA{} and a H-O-H angle of 104.5\textdegree, we are basically describing the geometric arrangements of the atoms H, H, and O with the minimum potential energy.
+
+%This is why we can talk about a molecule having a certain energy at a given nuclear configuration.
+%The quantity $E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)$ represents the potential felt by the nuclei due to the interaction with the electrons, and since it is a function of many variables it is commonly called the \emph{potential energy surface} (PES).
+
+%Many of the concepts about the structure and energetics of molecules are derived from the properties of potential energy surface.
+%These include the notion of molecular equilibrium structure, equilibrium energy, transition states, and reaction barriers.
+
+
+
+
 
 \section{The potential energy surface of diatomic molecules}
 \mfigure{
@@ -71,23 +91,11 @@ We will come back to this topic in a later chapter.
 \label{fig:diatomic}
 }
 
-The Born--Oppenheimer approximation is fundamental to our understanding of chemistry and  it one that you are already very familiar with, even though you might have not realized it.
-This approximation is implicitly assumed when you first learn about quantum mechanics in introductory chemistry courses.
-Once we solve the Schr\"{o}dinger equation in the BO approximation, the energy of the electrons depends on the coordinates of the nuclei
-\begin{equation}
-E = E(\mathbf{R})= E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)
-\end{equation}
-This is why we can talk about a molecule having a certain energy at a given nuclear configuration.
-The quantity $E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)$ represents the potential felt by the nuclei due to the interaction with the electrons, and since it is a function of many variables it is commonly called the \emph{potential energy surface} (PES).
-
-Many of the concepts about the structure and energetics of molecules are derived from the properties of potential energy surface.
-These include the notion of molecular equilibrium structure, equilibrium energy, transition states, and reaction barriers.
-
-The potential energy surface for a diatomic molecule \ce{A-B} is easy to visualize, because the energy depends only on the bond distance $r$, that is, $E = E(r)$, and we call it a \emph{potential energy curve} (PEC).
+The potential energy surface for a diatomic molecule \ce{A-B} is easy to visualize, because the energy depends only on the bond distance $r = |\mathbf{R}_\mathrm{A} - \mathbf{R}_\mathrm{B}|$, that is, $E = E(r)$, and we call it a \emph{potential energy curve} (PEC).
 Fig.~\ref{fig:diatomic} shows four potential energy surfaces for a diatomic molecule.
 The top two plots show a stable \ce{AB} molecule.
 In the first case (\textbf{A}), the reaction \ce{A + B} $\rightarrow$ {AB} is barrier-less and happens spontaneously.
-The bond distance $r_e$ where the energy of AB is a minimum is the \emph{equilibrium geometry}, and the corresponding energy is the \emph{equilibrium energy}.
+The bond distance $r_e$ where the energy of AB is a minimum is the \emph{equilibrium geometry} (often indicated with the symbol $r_e$), and the corresponding energy is the \emph{equilibrium energy} $E(r_e)$.
 In the second case  (\textbf{B}),  the reaction \ce{A + B} $\rightarrow$ {AB} proceeds via a \emph{transition state} \ce{AB}* that has an energy higher than \ce{A + B}.
 This reaction can happen only if A and B collide with enough energy to overcome the \emph{reaction barrier}.
 
@@ -113,20 +121,27 @@ If there is no transition state (\textbf{D}), then the molecule AB is unstable a
 
 \section{Potential energy surfaces of polyatomic molecules}
 
-More general potential energy surfaces are more difficult to visualize because  $E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)$ is a high-dimensional hypersurface.
-For example, a molecule like \ce{H3CNO} has a 13 dimensional potential energy surface!
+More general potential energy surfaces are more difficult to visualize because  the function $E(\mathbf{R}_1,  \mathbf{R}_2,\ldots)$ corresponds to a high-dimensional hypersurface.
+For example, a molecule like \ce{H3CNO} has potential energy surface that is 14-dimensional (13 coordinates + energy). Thinking in 3D can already be challenging, and visualizing simple objects in 4D is already outside of the ability of most people, so think how complicated it would be to visualize a curve in 13 + 1 dimensions! 
 
-A much simpler case is that of a molecule with three atoms (ABC), which corresponds to a potential energy surface in four dimensions (this number comes from taking three coordinates for each atom $3 \times 3 = 9$ plus the energy, and subtracting 3 degrees of freedom for rotations and 3 for translations).
-However, if we fix one of these three dimensions, for example, if we keep the angle A-B-C at 180\textdegree, then the resulting surface lives in only three dimensions and we can easily plot it.
+A much simpler case is that of a molecule with three atoms (ABC), which corresponds to a potential energy surface in four dimensions. This number comes from realizing that there are only three degrees of freedom that can change the molecular energy, the distances A--B and B--C, and the bond angle A--B--C.
+However, if we keep the angle A-B-C fixed at a given angle (for example, 180\textdegree), then the resulting surface lives in only three dimensions and we can easily plot it.
 In this case, we can represent the potential energy surface with a contour map, in a way similar to topographic maps, which have two dimensions, and the third dimension is indicated by contour lines.
 
 Fig.~\ref{fig:abc} shows the contour map for a hypothetical \ce{A-B-C} system.
-You can tell that there are two equilibrium structures. Of these two, the one that corresponds to small values of the BC bond distance is more stable, an it corresponds to the BC molecule weakly interacting with A (\ce{A\bond{...}B-C}).
+From the PES, we can tell that there are two equilibrium structures that corresponds to energy minima.
+Of these two, the one with a short BC bond distance is more stable, and we would describe it as a BC molecule weakly interacting with A (\ce{A\bond{...}B-C}).
 The second minimum (a local minimum) corresponds to the molecule AB weakly interacting with C (\ce{A-B\bond{...}C}).
 These two structures, are separated by a transition state \ce{A-B-C}.
 These plots also show a the minimum energy reaction path that connects \ce{A + BC} to \ce{AB + C} and the corresponding energy potential.
 To go from \ce{A\bond{...}B-C} to \ce{A-B\bond{...}C}, the molecule has to overcome a reaction barrier.
 As you can see from the plot in \textbf{C}, the height of this barrier depends on the direction of the reaction.
+
+One aspect that it is important to point out that the connection between Lewis structures that indicate the order of a bond, unpaired electrons, etc. to the structure of a PES is complicated.
+ The only thing we can do is arrange the atoms A, B, and C in a certain position and compute their energy.
+When we compute the potential energy surface of the hypothetical molecule ABC, we simply place atoms A, B, and C in a certain spatial arrangement and compute the molecular energy, without providing the bond order between atoms or atomic charges.
+This means that we cannot use the Schr\"{o}dinger equation to calculate the energy of a particular Lewis structure like A=B$^+$--C$^-$ or A--B--C.
+In computational chemistry, information about bonding and charges must be extracted from an analysis of the electronic wave function.
 
 \mfigure{
 \centering{
@@ -153,12 +168,8 @@ In the example in Fig.~\ref{fig:abc}, at the transition state, the direction wit
 We will come back to the question of how to characterize stationary points and give a more precise mathematical definition when we study vibrations in molecules.
 
 \begin{summary}
-\item To simplify the Schr\"{o}dinger equation the Born--Oppenheimer approximation separates the motion of electrons and nuclei.
-\item The potential energy surface $E(\mathbf{R})$ is the solution of ,the electron Schr\"{o}dinger equation at a fixed nuclear configuration $ \mathbf{R} \equiv (\mathbf{R}_1,\mathbf{R}_2,\ldots)$.
-\item The stationary points of the potential energy surface represent stable configurations of atoms in a molecule (minima) or transition states. These can be characterized by the curvature along orthogonal directions of $E(\mathbf{R})$.
+\item The Born--Oppenheimer approximation separates the motion of electrons and nuclei to simplify the Schr\"{o}dinger equation.
+\item The potential energy surface $E(\mathbf{R})$ is the solution of the electronic Schr\"{o}dinger equation at a fixed nuclear configuration $ \mathbf{R} \equiv (\mathbf{R}_1,\mathbf{R}_2,\ldots)$.
+\item The stationary points of the potential energy surface represent either stable molecular configurations (minima) or transition states (saddle points). These can be characterized by the curvature of the $E(\mathbf{R})$ at a stationary point.
 \end{summary}
-
-
-
-
 \end{document}
