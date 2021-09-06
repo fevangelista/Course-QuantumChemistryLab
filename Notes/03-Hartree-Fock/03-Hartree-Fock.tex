@@ -11,9 +11,36 @@
 
 \chapter{Hartree--Fock Theory}
 
+\section{Why is it difficult to solve the Schr\"{o}dinger equation for systems that contain more than a few electrons?}
+
+\mfigure{
+\begin{center}
+\includegraphics[width=2in]{img/curse.pdf}
+\end{center}
+\captionof{figure}{Illustration of the curse of dimensionality. If we specify the value of the wave function as points on a grid, the amount of memory necessary to represent the wave function scales exponentially with the number of variables (dimension).}
+\label{fig:curse}
+}
+
+In this chapter we will study the simplest way to solve the electronic Schr\"{o}dinger equation.
+However, before we turn to finding approximate solutions, we should ask: Why can't we solve the Schr\"{o}dinger equation for systems that contain more than a few electrons?
+The problem encountered when one tries to solve the Schr\"{o}dinger equation beyond a few electrons is so important that it has its own name: \emph{the curse of dimensionality}.
+This term is used to indicate any problem where the computational cost increases \emph{exponentially} with the size of the problem (for example, the number of electrons).
+
+Why do we run into the curse of dimensionality when we solve the Schr\"{o}dinger equation for many-electron systems?
+Imagine representing the wave function
+\begin{equation}
+\Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N)
+\end{equation}
+on a computer using a grid that has 8 points along each x, y, z coordinate of each electron.
+To specify the wave function, we have to know the value of $\Psi$ at all points in this multidimensional grid.
+For $N$ electrons, the grid will have a total of $8^{3N}$ points since we use 8 points for each of the $3N$ coordinates.
+Such a grid is shown in Fig.~\ref{fig:curse} for the case of one, two, and three coordinates.
+%In comparison, if we represent each orbital with the same grid, each orbital requires only $10^3$ grid points, and the total number of grid points is $N \times10^3$.
+Even for as little as six electrons, the exact wave function would require storing the value of $\Psi$ at $1.8 \times 10^{16}$ points. To store this information we would need 131,072 terabytes of memory! (at the time of writing, the typical memory capacity of a computer is less than a few terabytes of data).
+
 \section{Hartree--Fock theory and the independent particle approximation}
 The simplest quantum chemistry method is the Hartree--Fock approach.
-This method relies on an independent particle approximation, where the wave function is expressed as a product of wave functions of single electron (orbitals).
+This method relies on an independent particle approximation, where the wave function is expressed as a product of wave functions of single electrons (orbitals).
 We will indicate orbitals with the lower-case Greek letter phi ($\varphi$).
 An orbital is a function of the coordinate vector $\mathbf{r} = (x,y,z)$ for an electron.
 To distinguish between different orbitals, we will label them with an index and write them as
@@ -21,22 +48,25 @@ To distinguish between different orbitals, we will label them with an index and 
 \varphi_i(\mathbf{r})
 \end{iequation}
 
-In the Hartree--Fock approach we approximate the wave function of $N$ electrons as a product of the orbitals for each electron
+In the early days of quantum mechanics, Douglas Hartree proposed to approximate the wave function of $N$ electrons as a product of the orbitals for each electron
 \begin{equation}
 \label{eq:hartree_prod}
 \Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N) \approx \varphi_1(\mathbf{r}_1) \varphi_2(\mathbf{r}_2) \cdots \varphi_N(\mathbf{r}_N)
 \end{equation}
-This approximation reduces the problem of solving the Schr\"{o}dinger equation for a wave function of $3N$ coordinates into a simpler problem: we only need to determine $N$ wave functions that depend on 3 spatial coordinates.\mnote{For example, imagine representing the wave function $\Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N)$ using a grid that has 10 points along each dimension.
-For $N$ electrons, this grid will have a total of $10^{3N}$ points since $\Psi$ depends on $3N$ coordinates.
-In comparison, if we represent each orbital with the same grid, each orbital requires only $10^3$ grid points, and the total number of grid points is $N 10^3$.
-Even for as little as six electrons the exact wave function required already $10^{18}$ points, while the Hartree--Fock approach requires only $6000$!
-} 
-This simplification makes Hartree--Fock theory much more affordable than a direct solution of the Schr\"{o}dinger equation!
+This approximation reduces the problem of solving the Schr\"{o}dinger equation for a wave function of $3N$ coordinates into a simpler problem: we only need to determine $N$ wave functions that depend on 3 spatial coordinates.
+%\mnote{For example, imagine representing the wave function $\Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N)$ using a grid that has 10 points along each dimension.
+%For $N$ electrons, this grid will have a total of $10^{3N}$ points since $\Psi$ depends on $3N$ coordinates.
+%In comparison, if we represent each orbital with the same grid, each orbital requires only $10^3$ grid points, and the total number of grid points is $N 10^3$.
+%Even for as little as six electrons the exact wave function required already $10^{18}$ points, while the Hartree--Fock approach requires only $6000$!
+%} 
+This simplification makes Hartree's approach much more affordable than a direct solution of the Schr\"{o}dinger equation!
 
 \section{Spin and the Pauli principle (antisymmetry)}
-The wave function form of Eq.~\eqref{eq:hartree_prod} is still missing two important ingredients: 1) it does not account for the spin of electrons and 2) it does not obey the Pauli exclusion principle.
+The wave function form of Eq.~\eqref{eq:hartree_prod} is still missing two important ingredients: 1) it \emph{does not account for the spin of electrons} and 2) it \emph{does not obey the Pauli exclusion principle}.
+These issues were first realized by the physicist Vladimir Fock, who proposed a way to correct Hartree's method for this missing ingredient.
+
 Spin can be easily introduced by recognizing that the wave function of each electron must be accompanied by a spin function, that is, a label for the spin of the electron.
-As you have learned from previous classes, the spin of an electron can be either up (alpha, $\alpha$) or down (beta, $\beta$).\mnote{This is not rigorously true.}
+As you have learned from previous classes, the spin of an electron can be either up (alpha, $\alpha$) or down (beta, $\beta$).
 %\mnote{
 %\begin{equation}
 %\varphi_i(\mathbf{r}) \alpha \equiv 
@@ -94,7 +124,7 @@ can be satisfied only if $\Psi(x, x) =0$.
 \begin{iequation}
 \Psi(x_1, x_2) = -\Psi(x_2, x_1)
 \end{iequation}
-It is easy to write down a wave function built from orbitals that satisfies this condition, it just requires making the product antisymmetric with respect to the coordinates.
+It is easy to write down a wave function that satisfies this condition if we take a product of orbitals and make it antisymmetric with respect to the electron coordinates $x_1$ and $x_2$.
 Such a wave function is called a \emph{Slater determinant}\mnote{
 The Slater determinant is named after John C. Slater, who introduced the determinant in 1929 as a means of ensuring the antisymmetry of a many-electron wave function, although the wave function in the determinant form first appeared independently in Heisenberg's and Dirac's articles three years earlier.  (Source: Wikipedia)
 \begin{center}
@@ -112,8 +142,10 @@ The Slater determinant is named after John C. Slater, who introduced the determi
 %\end{vmatrix}
 = \frac{1}{\sqrt{2}} \left[ \psi_i(x_1)\psi_j(x_2) - \psi_i(x_2)\psi_j(x_1) \right]
 \end{iequation}
-Stater determinants correspond exactly to the orbital diagrams with orbitals filled with electrons (represented by arrows).
-For example, the electron configuration with two electrons filling the same orbital corresponds to the following Slater determinant\begin{equation}
+
+A Stater determinant can be represented graphically with a molecular orbital diagram. Each orbital is represented with a line and filled with electrons (represented by arrows).
+For example, the electron configuration with two electrons filling the orbital $\phi_1$ corresponds to the following Slater determinant
+\begin{equation}
 \ket{\psi_1 \psi_{\bar{1}}} = 
 \ket{\varphi_1 \alpha \varphi_1 \beta }
 \equiv \;
@@ -152,14 +184,14 @@ We can also conveniently represent Slater determinants graphically with orbital 
 The main goal of the Hartree--Fock method is to find the orbitals that give the ``best'' possible wave function.
 Here by ``best'' we mean precisely the one that minimizes the expectation value of the energy, which is given by the integral
 \begin{equation}
-E_\mathrm{SD} = \int \Psi_{\mathrm{SD}}^* \hat{H}\Psi_{\mathrm{SD}}
+E_\mathrm{SD} = \int dx_1 dx_2 \cdots \; \Psi_{\mathrm{SD}}^*(x_1,x_2,\ldots) \hat{H}\Psi_{\mathrm{SD}}(x_1,x_2,\ldots)
 \end{equation}
 The \emph{variational} theorem guarantees that the energy of an approximate wave function $\tilde{\Psi}$ is always greater than the exact energy, $\tilde{E} \geq E_\mathrm{exact}$, and the closer we get to the exact energy $E_\mathrm{exact}$, the better our wave function $\tilde{\Psi}$ approximate the exact solution $\Psi_\mathrm{exact}$.
 
-The orbitals that minimize the energy satisfy the \emph{Hartree--Fock equations}
-\begin{equation}
+The orbitals that minimize the energy $E_\mathrm{SD}$ satisfy the \emph{Hartree--Fock equations}
+\begin{iequation}
 \hat{f} \psi_i(x) = \epsilon_i  \psi_i(x), \quad \text{ for all } \psi_i(x)
-\end{equation}
+\end{iequation}
 where $\hat{f}$ is the \emph{Fock operator}.
 This is an eigenvalue equation like the Schr\"{o}dinger equation, but it is simpler because it only involves one orbital at the time (a functions of 3 coordinates only).
 However, it is important to remember that this equation is valid only in the Hartree--Fock approximation.
@@ -183,19 +215,21 @@ The electron density is in turn given by the sum of the square of the occupied o
 \begin{equation}
 \rho(\mathbf{r}) = 2 \sum_{i}^\mathrm{occupied} |\varphi_i(\mathbf{r})|^2
 \end{equation}
-The Hartree--Fock equations and these last two equations tell us that to find the orbital we need to know $\hat{f}$, but to know $\hat{f}$ we need to know the density, which is determined by the orbitals
+The Hartree--Fock equations and these last two equations tell us that to find the orbital we need to know $\hat{f}$, but to know $\hat{f}$ we need to know the density, which is determined by the orbitals.
+We can illustrate this relationship between these quantities by the diagram
 \begin{equation}
-\psi_i \leftarrow \hat{f} \leftarrow \rho \leftarrow \psi_i
+\psi_i \rightarrow \hat{f} \rightarrow \rho \rightarrow \psi_i
 \end{equation}
-In practice this means that the Hartree--Fock equations have to be solved via a \emph{self-consistent-field (SCF) procedure} where one first starts with a guess for the orbitals and then proceeds to improve the solution iteratively.
+where ``$\rightarrow$'' means that the quantity on the left depends on the quantity on the right.
+In practice since to solve for $\psi_i$ we need to know $\psi_i$, the Hartree--Fock equations have to be solved via a \emph{self-consistent-field (SCF) procedure} where one first starts with a guess for the orbitals and then proceeds to improve the solution iteratively.
 
 The SCF procedure consists of the following steps:
 \begin{enumerate}
-\item Forming an initial guess. At beginning of an SCF procedure we need to start from orbitals that are close to the optimal ones.
+\item \textbf{Forming an initial guess}. At beginning of an SCF procedure we need to start from orbitals that are close to the optimal ones.
 Common ways to guess the orbitals include neglecting electron repulsion or forming the average potential from a superposition of atomic densities.
-\item Updating the Fock matrix. Using the current set of orbitals, the average potential and the Fock operator are built. 
-\item Determining the orbitals and orbital energies. Using the current Fock matrix, the Hartree--Fock equations are solved to obtain one set of orbitals and orbital energies and an updated value for the total energy.
-\item Convergence check. The program checks if the change in energy and orbitals with respect to the previous iteration is less than a predefined convergence threshold. If the computation has converged, we stop. Otherwise, we go back to step 2. and use the new set of orbital to compute a new Fock operator.
+\item \textbf{Updating the Fock matrix}. Using the current set of orbitals, the average potential and the Fock operator are built. 
+\item \textbf{Determining the orbitals and orbital energies}. Using the current Fock matrix, the Hartree--Fock equations are solved to obtain one set of orbitals and orbital energies and an updated value for the total energy.
+\item \textbf{Convergence check}. The program checks if the change in energy and orbitals with respect to the previous iteration is less than a predefined convergence threshold. If the computation has converged, we stop. Otherwise, we go back to step 2. and use the new set of orbital to compute a new Fock operator.
 \end{enumerate}
 
 The following is the output of a Hartree--Fock computation on water.
@@ -303,18 +337,18 @@ The label ``DIIS'', indicates that the code is using the direct inversion of the
 }
 
 It is important to understand the precise meaning of the orbital energies $\epsilon_i$ because it is slightly different than our intuition as chemists.
-\emph{Koopmans' theorem} shows that the orbital energies are related to the energy necessary to remove or add electrons to an orbital.
-More precisely, for orbitals that are occupied by electrons, Koopmans' theorem says that $-\epsilon_i$ correspond to the energy necessary to remove one electron (ionize) from the system
+\emph{Koopmans' theorem} shows that the orbital energies are related to the ionization energy and electron affinity of a molecule.
+For orbitals that are occupied by electrons, Koopmans' theorem says that $-\epsilon_i$ correspond to the energy necessary to remove one electron (ionize), like in the process
 \begin{center}
 \ce{M -> M+ + e-}
 \end{center}
-Koopmans' theorem can be stated as
+Koopmans' theorem for occupied orbitals can be stated as
 \begin{iequation}
 \text{Ionization potential for electron in }\psi_i = \mathrm{IP}_i = E^{N-1} - E^{N} = -\epsilon_i.
 \end{iequation}
 If an occupied orbital has a negative energy, then we have to put energy into a molecule to remove that electron (the IP is positive).
 
-Similarly, for orbitals that are not occupied, the orbital energy $\epsilon_a$ corresponds to the energy released when an electron is added to form an anion (if the starting molecule is neutral)
+Similarly, for orbitals that are not occupied, the orbital energy $\epsilon_a$ corresponds to the energy released when an electron is added to form an anion (if the starting molecule is neutral), like in the process
 \begin{center}
 \ce{M + e- -> M-}
 \end{center}
@@ -325,22 +359,21 @@ In this case, Koopmans' theorem helps us quantify the electron affinity
 Therefore, if an unoccupied orbital has a negative energy (positive EA), a molecule will attach an electron and form a stable negative ion.
 If instead $\epsilon_a$ is positive, a molecule will not accept an electron, and its anion will be unstable with respect to self ionization (the anion will spontaneously loose an electron in a finite amount of time).
 
-Koopmans' theorem assumes that during the electron ionization/attachment the orbitals do not change, which means that it ignores relaxation effects to the addition or removal of electrons.
-Koopmans' theorem also neglects electron correlation, so the IP and EA will deviate from experiment.
-This means that in practice Koopmans' theorem is not a very accurate way to compute the IP and EA of molecules.
-Nevertheless, it gives physical meaning to the orbital energies and it can be used to qualitatively estimate the IP and EA of molecules.
+\section{Theoretical vs. experimental orbital energies}
 
+The importance of Koopmans' theorem is that it gives \emph{physical meaning to the Hartree--Fock orbital energies and orbitals}.
+%It can also be useful to qualitatively estimate the IP and EA of molecules.
+%However, the IPs and EAs from Koopmans' theorem are not very accurate since several approximations are used to arrive at it (like the assumption that the orbitals do not change following electron ionization/attachment).
 \mfigure{
 \begin{center}
-\includegraphics[width=2in]{img/PES_of_H2O.jpg}
+\includegraphics[width=2.0in]{img/PES_of_H2O.jpg}
 \end{center}
 \captionof{figure}{Photoionization spectrum of water in the gas phase (in eV). Source: Wikimedia Commons.}
 \label{fig:water_pes}
 }
-
-The importance of Koopmans' theorem is that it build a bridge to experiments that measure the IP and EA of molecules.
-For example, photoelectron spectroscopy, can measure the ionization potential (also called the binding energy) of electrons in different orbitals.
-In this spectroscopy, a molecule is ionized with a high energy photon and one electron is released with kinetic energy equal to the energy of the photons ($h \nu$) minus the binding energy, $h \nu - IP$.
+Using Koopmans' theorem, it is possible to bridge the results of Hartree--Fock computation to experiments that measure the IP and EA of molecules.
+For example, \emph{photoelectron spectroscopy} can measure the ionization potential (also called the binding energy) of electrons in different orbitals.
+In this spectroscopy, a molecule is ionized with a high energy photon and one electron is released with kinetic energy equal to the energy of the photon ($h \nu$) minus the binding energy, $h \nu - \mathrm{IP}_i$.
 Therefore, it allows to measure the binding energy of different orbitals.
 An example of the photoelectron spectrum of water in the gas phase is given in Fig.~\ref{fig:water_pes}.
 
@@ -384,7 +417,7 @@ The lowest ionization potential of water is estimated according to Koopmans' the
 The corresponding IP is equal to 0.493 \Eh = 13.4 eV, a value that compares well with the experimental gas-phase IP (ca. 12.6 eV, indicated in the figure).
 The ionization potential for the second orbital (labeled 3a$_1$) is 0.566 \Eh = 15.4 eV.
 This corresponds to the  middle broad band in the spectrum centered around 15 eV.
-Note that Koopmans' theorem applied to the Hartree--Fock solution also predicts that the anion \ce{H2O-} is unstable with respect to the process ionization process
+Note that Koopmans' theorem applied to the Hartree--Fock solution also predicts that the anion \ce{H2O-} is unstable with respect to the autoionization process
 \begin{center}
 \ce{H2O- -> H2O + e-} 
 \end{center}
