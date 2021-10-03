@@ -24,12 +24,14 @@ The full set of notes in pdf format is available [here](pdfs/notes.pdf). Pdf fil
 1. [Modeling interactions (SAPT and PCM)](pdfs/11-ModelingInteractions.pdf)
 
 ## Jupyter Tutorials
-1. [First computation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/00-FirstComputation)
-1. [The input](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/01-TheInput)
-1. [Hartree-Fock theory](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/02-HartreeFock)
-1. [Characterization of stationary points](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/03-StationaryPoints)
-1. [Optimization of transition states](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/04-GeometryOptimization)
-1. [Modeling interactions (SAPT and PCM)](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/tree/master/Notebooks/11-ModelingInteractions)
+1. [Introduction to Jupyter](Notebooks/00-Jupyter.ipynb)
+1. [First computation](Notebooks/00-FirstComputation)
+1. [The input](Notebooks/01-TheInput)
+1. [Hartree-Fock theory](Notebooks/02-HartreeFock)
+1. [Characterization of stationary points](Notebooks/03-StationaryPoints)
+1. [Basis sets](Notebooks/04-BasisSets)
+1. [Optimization of transition states](Notebooks/04-GeometryOptimization)
+1. [Modeling interactions (SAPT and PCM)](Notebooks/11-ModelingInteractions)
 
 ## Jupyter Assignments
 1. [Geometry optimization](Assignments/01-GeometryOptimization/01-GeoometryOptimization.ipynb)
