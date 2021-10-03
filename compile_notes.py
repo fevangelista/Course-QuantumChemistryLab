@@ -7,9 +7,9 @@ chapters = ['01-Basics',
             '02-BornOppenheimer',
             '03-Hartree-Fock',
             '04-StationaryPoints',
-            '05-GeometryOptimization',
-            '06-BasisSets',
-            '07-DFT',
+            '05-BasisSets',
+            '06-DFT',
+            '07-TransitionStates',
             '08-OpenShells',
             '09-CorrelatedMethods',
             '10-Thermochemistry',
@@ -29,7 +29,7 @@ for ch in chapters:
     os.chdir(root_dir)
 
 main_dir = os.path.join('Notes','Main')
-main = 'chem371-notes'
+main = 'notes'
 os.chdir(main_dir)
 os.system(f'xelatex {main}.tex')
 os.system(f'bibtex {main}.tex')

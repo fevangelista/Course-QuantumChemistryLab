@@ -4,9 +4,9 @@
 
 % !TEX TS-program = xelatex
 
-\documentclass[../Main/chem371-notes.tex]{subfiles}
+\documentclass[../Main/notes.tex]{subfiles}
 
-\setcounter{chapter}{6}
+\setcounter{chapter}{5}
 \begin{document}
 
 \chapter{Density Functional Theory}
@@ -36,7 +36,7 @@ P(x_1,x_2, \ldots) = |\Psi(x_1,x_2, \ldots)|^2
 \neq P_1(x_1) P_2(x_2) \cdots
 \end{equation}
 
-The Hartree--Fock method does fully account for electron correlation.\mnote{Hartree--Fock theory includes a special type of correlation for electrons with same spin, called Fermi correlation.}
+The Hartree--Fock method cannot account for electron correlation.\mnote{Hartree--Fock theory includes a special type of correlation for electrons with same spin, called Fermi correlation.}
 This can be seen in Fig.~\ref{fig:dft:correlation}, where if we plot the probability of finding the electrons in the helium atom as a function of their distance--- while keeping their distance from the nucleus fixed---we find out that the Hartree--Fock wave function is a constant.
 This is because for the case of Hartree--Fock the probability of finding the two electrons is the product of two independent probabilities.
 Figure~\ref{fig:dft:correlation} also shows the exact wave function, which displays a dip in the probability due to Coulomb repulsion.
