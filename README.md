@@ -10,7 +10,7 @@ This repository collects:
 - The assignments used in class. These can be found in [the Assignments folder](Assignments).
 
 ## Notes
-The full set of notes in pdf format is available [here](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/chem371-notes.pdf). Pdf files for the individual chapters can be found here:
+The full set of notes in pdf format is available [here](pdfs/notes.pdf). Pdf files for the individual chapters can be found here:
 1. [Basics](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/01-Basics.pdf)
 1. [The Born-Oppenheimer approximation](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/02-BornOppenheimer.pdf)
 1. [Hartree-Fock theory](https://github.com/fevangelista/CHEM371-LW-QuantumChemistryLab/blob/master/pdfs/03-Hartree-Fock.pdf)
