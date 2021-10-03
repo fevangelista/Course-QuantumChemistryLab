@@ -28,8 +28,8 @@ The full set of notes in pdf format is available [here](pdfs/notes.pdf). Pdf fil
 1. [First computation](Notebooks/00-FirstComputation)
 1. [The input](Notebooks/01-TheInput)
 1. [Hartree-Fock theory](Notebooks/02-HartreeFock)
+1. [Basis sets](Notebooks/04-BasisSet)
 1. [Characterization of stationary points](Notebooks/03-StationaryPoints)
-1. [Basis sets](Notebooks/04-BasisSets)
 1. [Optimization of transition states](Notebooks/04-GeometryOptimization)
 1. [Modeling interactions (SAPT and PCM)](Notebooks/11-ModelingInteractions)
 
