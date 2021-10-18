@@ -24,14 +24,16 @@ The full set of notes in pdf format is available [here](pdfs/notes.pdf). Pdf fil
 1. [Modeling interactions (SAPT and PCM)](pdfs/11-ModelingInteractions.pdf)
 
 ## Jupyter Tutorials
-1. [Introduction to Jupyter](Notebooks/00-Jupyter.ipynb)
-1. [First computation](Notebooks/00-FirstComputation)
-1. [The input](Notebooks/01-TheInput)
-1. [Hartree-Fock theory](Notebooks/02-HartreeFock)
-1. [Basis sets](Notebooks/04-BasisSet)
-1. [Characterization of stationary points](Notebooks/03-StationaryPoints)
-1. [Optimization of transition states](Notebooks/04-GeometryOptimization)
-1. [Modeling interactions (SAPT and PCM)](Notebooks/11-ModelingInteractions)
+1. [Introduction to Jupyter](Notebooks/00-Jupyter/00-Jupyter.ipynb)
+1. [First computation](Notebooks/00-FirstComputation/00-FirstComputation.ipynb)
+1. [The input](Notebooks/01-TheInput/01-TheInput.ipynb)
+1. [Hartree-Fock theory](Notebooks/02-HartreeFock/02-HartreeFock.ipynb) ([notebook with output](Notebooks/02-HartreeFock/02-HartreeFock-Output.ipynb))
+1. [Characterization of stationary points](Notebooks/03-StationaryPoints/03-StationaryPoints.ipynb)2. 
+3. [Basis sets](Notebooks/04-BasisSet/04-BasisSet.ipynb)
+4. [DFT](Notebooks/05-DFT/05-DFT.ipynb)
+5. [Open shells](Notebooks/06-OpenShells/06-OpenShells.ipynb)
+6. [Optimization of transition states](Notebooks/07-TransitionStates/07-TransitionStates.ipynb)
+7. [Modeling interactions (SAPT and PCM)](Notebooks/11-ModelingInteractions)
 
 ## Jupyter Assignments
 1. [Geometry optimization](Assignments/01-GeometryOptimization/01-GeoometryOptimization.ipynb)
