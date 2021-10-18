@@ -1,6 +1,6 @@
 # Quantum Chemistry Lab
 
-Welcome to the github repository of CHEM371-LW Quantum Chemistry Lab!
+Welcome to the github repository of the Quantum Chemistry Lab course!
 
 This is an introductory class on quantum chemistry that covers both some theory and practical aspects of computational quantum chemistry.
 
