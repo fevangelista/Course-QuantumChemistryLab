@@ -29,7 +29,7 @@ In the previous section we have seen that $E(r)$ can be approximated by a Taylor
 \begin{equation}
 \begin{split}
 E(r) & = E(r_0) + E'(r_0) (r - r_0) + \frac{1}{2} E''(r_0) (r - r_0)^2 + \ldots \\
-& = E(r_0) + g (r - r_0) + \frac{1}{2} h (r - r^*)^2 + \ldots
+& = E(r_0) + g (r - r_0) + \frac{1}{2} h (r - r_0)^2 + \ldots
 \end{split}
 \end{equation}
 where $g = E'(r_0)$ and $h = E''(r_0)$ are the gradient and hessian, respectively.
@@ -42,11 +42,11 @@ If we take the derivative of the Taylor series of $E(r)$ we get
 \begin{equation}
 E'(r)  = g + h (r - r_0) + \ldots 
 \end{equation}
-If we set this expression to zero and ignore the quadratic terms and higher ($\ldots$), we obtain the condition
+If we impose on this expression the condition $E'(r^*) = 0$ and ignore the quadratic terms and higher ($\ldots$), we obtain the condition
 \begin{equation}
-g + h ( r - r_0) = 0 \quad \Rightarrow 
+g + h ( r^* - r_0) = 0 \quad \Rightarrow 
 \quad 
-r = r_0 - \frac{g}{h}
+r^* = r_0 - \frac{g}{h}
 \end{equation}
 This equation tells us at what bond distance we will find the stationary point, \emph{if the potential energy curve is quadratic}. In practice, the potential contains terms beyond quadratic, but if we are close enough to a stationary point they will only amount to a small correction.
 In this case we can repeat the Newton--Raphson procedure and recompute the gradients and hessians and continue to update the geometry until the gradient is close enough to zero.
