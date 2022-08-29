@@ -26,6 +26,14 @@ Excitations from occupied valence to unoccupied valence orbitals typically fall 
 It is very often the case that the lowest excited state corresponds to exciting one electron from the HOMO to the LUMO orbital.
 However, molecules can undergo other type of excitations, like \emph{core to valence} excitations, which are more energetic and fall in the X-ray region of the electromagnetic spectrum.
 
+\mfigure{
+\centering{
+\includegraphics[width=1.75in]{img/curve.pdf}
+}
+\captionof{figure}{Illustration of the main electron configuration for closed-shell molecules (\textbf{A}), high-spin open shells (\textbf{B}), and low-spin open shells (\textbf{C}). For the low-spin open shell case (\textbf{C}) only one Slater determinant is shown.}
+\label{fig:open-shells:open-shells}
+}
+
 \section{Configuration interaction singles}
 Methods that target excited states specifically build approximate wave functions that contain excited determinants.
 The simplest excited state method is configuration interaction with singles (CIS).
@@ -34,63 +42,81 @@ The CIS wave function is a linear combination of singly excited determinants
 \Psi_\mathrm{CIS} = \sum_{i}^{\mathrm{occ}}\sum_{a}^{\mathrm{vir}} c_i^a \Phi_{i}^{a}
 \end{equation}
 In this equation, the notation $\Phi_{i}^{a}$ indicates a determinant obtained from the Hartree--Fock state by removing an electron from orbital $\varphi_i$ and placing it in orbital $\varphi_a$, while the quantities $c_i^a$ are coefficients associated with an excited state.
+Note that the CIS wave function \emph{does not include the Hartree--Fock determinant} $\Phi_\mathrm{HF}$. This is a deliberate choice that reflects the fact that in the CIS method the determinant $\Phi_\mathrm{HF}$ cannot contribute to an excited state.
+
+
 In the CIS method, the determinants are assumed to be fixed, while the coefficients $c_i^a$ are unknowns that must be determined.
 Like in Hartree--Fock theory, we find the solution to this problem via minimization of the energy. Mathematically, this is equivalent to solving a matrix eigenvalue problem:
 \begin{equation}
-\mathbf{Hc} = E_\mathrm{CIS} \mathbf{c}
+\mathbf{Hc}_n = E_n^\mathrm{CIS} \mathbf{c}_n
 \end{equation}
+In this equation, the matrix $\mathbf{H}$ contain matrix elements of the Hamiltonian operator ($\hat{H}$) for two different determinants
+\begin{equation}
+\mathbf{H}_{[ia],[jb]} = \int d\mathrm{x_1} \cdots d\mathrm{x_N}
+\Phi_i^a( \mathrm{x_1},\ldots,\mathrm{x_N}) \hat{H} 
+\Phi_j^b( \mathrm{x_1},\ldots,\mathrm{x_N})
+\end{equation}
+The index notation used here means that we combine a pair of indices like $i$ and $a$ to form a single \emph{pair index} $[ia]$. Then we can interpret $\mathbf{H}_{[ia],[jb]}$ as a regular matrix indexed by the indices $[ia]$ and $[jb]$.
 
+In the CIS equation, $E_n^\mathrm{CIS}$ and the vector $\mathbf{c}_n$ stand for the $n$-th eigenvalue and eigenvector of the Hamiltonian matrix, and represent the energy and wave function of the $n$-th excited electronic state ($n = 1$ is the first excited state).
+The vector $\mathbf{c}_n$ corresponds to the configuration interaction coefficients and has elements defined as
+\begin{equation}
+(\mathbf{c}_n)_{[ia]} = c_i^a
+\end{equation}
 
 \section{Time-dependent DFT}
 
-\section{Equation-of-motion coupled cluster methods}
-
-\section{Equation-of-motion coupled cluster theory}
-\begin{equation}
-\hat{H} \rightarrow \bar{H} = e^{-\hat{T}} \hat{H} e^{\hat{T}} 
-\end{equation}
-If 
-\begin{equation}
-\hat{H}  \ket{\Psi_\alpha} = E_\alpha \ket{\Psi_\alpha}
-\end{equation}
-
-\begin{equation}
-\begin{split}
-\hat{H}  e^{\hat{T}} e^{-\hat{T}} \ket{\Psi_\alpha} = & E_\alpha \ket{\Psi_\alpha} \\
-e^{-\hat{T}} \hat{H}  e^{\hat{T}} e^{-\hat{T}} \ket{\Psi_\alpha} = & E_\alpha e^{-\hat{T}} \ket{\Psi_\alpha} \\
-\bar{H} e^{-\hat{T}} \ket{\Psi_\alpha} = & E_\alpha e^{-\hat{T}} \ket{\Psi_\alpha} \\
-\bar{H} \ket{\bar{\Psi}_\alpha} = & E_\alpha \ket{\bar{\Psi}_\alpha} \\
-\end{split}
-\end{equation}
+Although density functional theory is fundamentally a ground state theory, there is an extension of DFT, called \emph{time-dependent} DFT (TD-DFT) to compute excitation energies and transition.
 
 
-\section{Multireference methods for excited states}
-
-
-
-
-\section{CASSCF methods for excited states}
-State-specific CASSCF
-
-\begin{equation}
-\ket{\Psi_\text{SS-CASSCF}^{(\alpha)}} 
-= \sum_I C_I^{(\alpha)} \ket{\Phi^{(\alpha)}_I}
-\end{equation}
-where
-\begin{equation}
-\ket{\Phi^{(\alpha)}_I} =  \ket{\psi^{(\alpha)}_{i_1} \cdots \psi^{(\alpha)}_{i_N}}
-\end{equation}
-
-
-\begin{equation}
-\ket{\Psi_\text{SA-CASSCF}^{(\alpha)}} 
-= \sum_I C_I^{(\alpha)} \ket{\Phi_I}
-\end{equation}
-
-\begin{equation}
-\bar{E} = \min_{C_I^{\alpha}, \{ \psi_i \}} \sum_{\alpha = 1}^{d}
-w_\alpha \braket{\Psi_\text{SA-CASSCF}^{(\alpha)} | \hat{H} | \Psi_\text{SA-CASSCF}^{(\alpha)}} 
-\end{equation}
+%\section{Equation-of-motion coupled cluster methods}
+%
+%\section{Equation-of-motion coupled cluster theory}
+%\begin{equation}
+%\hat{H} \rightarrow \bar{H} = e^{-\hat{T}} \hat{H} e^{\hat{T}} 
+%\end{equation}
+%If 
+%\begin{equation}
+%\hat{H}  \ket{\Psi_\alpha} = E_\alpha \ket{\Psi_\alpha}
+%\end{equation}
+%
+%\begin{equation}
+%\begin{split}
+%\hat{H}  e^{\hat{T}} e^{-\hat{T}} \ket{\Psi_\alpha} = & E_\alpha \ket{\Psi_\alpha} \\
+%e^{-\hat{T}} \hat{H}  e^{\hat{T}} e^{-\hat{T}} \ket{\Psi_\alpha} = & E_\alpha e^{-\hat{T}} \ket{\Psi_\alpha} \\
+%\bar{H} e^{-\hat{T}} \ket{\Psi_\alpha} = & E_\alpha e^{-\hat{T}} \ket{\Psi_\alpha} \\
+%\bar{H} \ket{\bar{\Psi}_\alpha} = & E_\alpha \ket{\bar{\Psi}_\alpha} \\
+%\end{split}
+%\end{equation}
+%
+%
+%\section{Multireference methods for excited states}
+%
+%
+%
+%
+%\section{CASSCF methods for excited states}
+%State-specific CASSCF
+%
+%\begin{equation}
+%\ket{\Psi_\text{SS-CASSCF}^{(\alpha)}} 
+%= \sum_I C_I^{(\alpha)} \ket{\Phi^{(\alpha)}_I}
+%\end{equation}
+%where
+%\begin{equation}
+%\ket{\Phi^{(\alpha)}_I} =  \ket{\psi^{(\alpha)}_{i_1} \cdots \psi^{(\alpha)}_{i_N}}
+%\end{equation}
+%
+%
+%\begin{equation}
+%\ket{\Psi_\text{SA-CASSCF}^{(\alpha)}} 
+%= \sum_I C_I^{(\alpha)} \ket{\Phi_I}
+%\end{equation}
+%
+%\begin{equation}
+%\bar{E} = \min_{C_I^{\alpha}, \{ \psi_i \}} \sum_{\alpha = 1}^{d}
+%w_\alpha \braket{\Psi_\text{SA-CASSCF}^{(\alpha)} | \hat{H} | \Psi_\text{SA-CASSCF}^{(\alpha)}} 
+%\end{equation}
 
 %\mfigure{
 %\centering{

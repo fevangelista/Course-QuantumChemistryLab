@@ -13,7 +13,7 @@
 
 All our discussions have so far centered on molecules in the gas phase.
 In this chapter we will look at how to compute weak interactions between different molecules (intermolecular interactions) and the more general case of one molecule interacting with a large number of solvent molecules.
-Due to its complexity, the problem of computing accurate thermochemical and kinetic properties in solution is still an open problem.
+Due to its complexity, computing accurate thermochemical and kinetic properties in solution is still an open problem.
 
 \section{Intermolecular interactions}
 
@@ -24,9 +24,9 @@ For example, molecules A and B could form a hydrogen bond, a polar interaction, 
 \end{equation}
 The interaction energy ($\Delta E_\text{int}$) for the above process is defined as the energy difference
 \begin{equation}
-\Delta E_\text{int} = E(A\cdots B) - E(\text{A}) - E(\text{B})
+\Delta E_\text{int} = E(\text{A}\cdots \text{B}) - E(\text{A}) - E(\text{B})
 \end{equation}
-and can be computed by performing three separate computations.
+and can be computed by performing three separate energy computations on A, B, and $\text{A}\cdots \text{B}$.
 
 The interaction energy may be decomposed into a number of different physical effects that cause A and B to attract or repel.
 These intermolecular interactions can be first of all divided into \emph{short-range}, which decay as exponentially with the distance $R$, $\exp(-\alpha R)$, and \emph{long-range} interactions that decay as an inverse power of $R$, $R^{-n}$.
@@ -121,7 +121,8 @@ In the first step, the acid in solution is brought in the gas phase, giving a fr
 In the second step, the acid dissociates into \ce{H+} + \ce{A-}, with corresponding free energy change equal to the free energy of dissociation ($\Delta G_\textrm{gas}$).
 In the third step, the \ce{H+} + \ce{A-} ions are solvated.
 This cycle allows to compute $\Delta G_\textrm{aq}$ as
-\begin{equation}
+\begin{equation}\includegraphics[]{img/pcm.pdf}
+
 \Delta G_\textrm{aq} = \Delta G_\textrm{gas} + \Delta G_\textrm{solv}(\ce{H^+}) + \Delta G_\textrm{solv}(\ce{A^-})  -\Delta G_\textrm{solv}(HA)
 \end{equation}
 Of these three free energy contribution, $\Delta G_\textrm{gas}$ can be computed directly with quantum chemistry methods.
