@@ -14,22 +14,25 @@
 \section{What is Quantum Chemistry?}
 According to Wikipedia:
 \begin{quotation}
-Quantum chemistry, also called molecular quantum mechanics, is a branch of chemistry focused on the application of quantum mechanics in physical models and experiments of chemical systems. Understanding electronic structure and molecular dynamics using the Schrödinger equations are central topics in quantum chemistry.
+Quantum chemistry, also called molecular quantum mechanics, is a branch of chemistry focused on the application of quantum mechanics in physical models and experiments of chemical systems.
+Understanding electronic structure and molecular dynamics using the Schrödinger equations are central topics in quantum chemistry.
 \end{quotation}
 
-Quantum chemistry, and more generally, computational chemistry is a growing subfield of chemistry.
+Quantum chemistry, and more generally, computational chemistry, is a growing subfield of chemistry.
 Its main purpose is to use quantum physics to predict the physical and chemical properties of molecules and materials, understand the mechanism of reactions, and connect experimental measurements (e.g., from spectroscopy) to molecular structure.
-The potential revolutionary impact that quantum mechanics may have on chemistry was recognized in the early days of quantum mechanics by Paul Dirac, who wrote:\mnote{Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character, Vol. 123, No. 792 (6 April 1929)}
+The potential revolutionary impact that quantum mechanics may have on chemistry was recognized in the early day of quantum mechanics by Paul Dirac, who wrote:\mnote{P.A.M. Dirac, \textit{Proc.~R.~Soc.~Lond.~A} \textbf{123}, 714–733 (1929),
+\url{http://doi.org/10.1098/rspa.1929.0094}.}
 \begin{quotation}
 The underlying physical laws necessary for the mathematical theory of a large part of physics and the whole of chemistry are thus completely known, and the difficulty is only that the exact application of these laws leads to equations much too complicated to be soluble.
 It therefore becomes desirable that approximate practical methods of applying quantum mechanics should be developed, which can lead to an explanation of the main features of complex atomic systems without too much computation.
 \end{quotation}
 
-Here we encounter one common theme of this course: that due to the difficulties of applying quantum mechanics to chemistry, we will only have access to approximate solutions.
-This implies that we will have methods that introduce errors, and we will have to develop an understanding what limitations each method has.
+Here, we encounter one common theme of this course: that due to the difficulties of applying quantum mechanics to chemistry, we will only have access to approximate solutions.
+This implies that we will have methods that introduce errors, and we will have to develop an understanding of each method's limitations.
 
 \section{Quantum Mechanics and the Schr\"{o}dinger equation}
-The basic equation at the basis of quantum mechanics is the Schr\"{o}dinger equation\mnote{This is the \emph{time-independent} version of the Schr\"{o}dinger equation. The more general version is the time-dependent form, which can be applied to study dynamical process.}
+
+The basic equation at the basis of quantum mechanics is the Schr\"{o}dinger equation\mnote{This is the \emph{time-independent} version of the Schr\"{o}dinger equation. The more general version is the time-dependent form, which can be applied to study dynamical processes.}
 \begin{iequation}
 \hat{H}\Psi = E \Psi
 \end{iequation}
@@ -37,63 +40,80 @@ The basic equation at the basis of quantum mechanics is the Schr\"{o}dinger equa
 \mdef{Wave function}{$\Psi$ / $\psi$ (pronounced ``psahy''). Represents the state of a quantum system.}
 This equation contains three elements:
 \begin{myitems}
-\item The \emph{Hamiltonian operator} $\hat{H}$. This is a mathematical operator, in the sense that when it is applied to a function it produces a new one. The Hamiltonian contains terms for the kinetic and potential energy.
+\item The \emph{Hamiltonian operator} $\hat{H}$. This is a mathematical operator, in the sense that when it is applied to a function it produces a new one. The Hamiltonian contains terms for the kinetic and potential energy.\mnote{A common mathematical notation used to distinguish an operator from other quantities uses the circumflex ($\hat{\phantom{A}}$) above the symbol of the operator.}
 \item The \emph{wave function} $\Psi$. This is a function of the coordinates of all the particles in a quantum system and contains all the information necessary to describe the state of a quantum system.
+The wave function can be a complex number, but in this course, we will focus only on the case of real wave functions.
 \item The \emph{energy} $E$. This is the energy (a real number) that corresponds to the wave function $\Psi$.
 \end{myitems}
-The Schr\"{o}dinger is an \emph{eigenvalue} equation, because it falls under the category of equations like
+The Schr\"{o}dinger is an \emph{eigenvalue} equation because it falls under the category of equations like
 \begin{equation}
 \hat{O} f(x) = \lambda f(x)
 \end{equation}
 where the unknown function $f(x)$ and number $\lambda$ are such that when the operator $\hat{O}$ is applied to $f(x)$ we get back $f(x)$ times a number.
-%says that when we apply the Hamiltonian operator $\hat{H}$ to the wave function $\Psi$ we get back the wave function times a number (the energy).
 \begin{example}[Eigenvalue equations]
-As an example consider the derivative operator $\hat{O} = \frac{d}{dx}$.
+As an example, consider the derivative operator $\hat{O} = \frac{d}{dx}$.
 The eigenfunctions of this operator then satisfy the following equation
 \begin{equation}
 \frac{d}{dx} f(x) = \lambda f(x)
 \end{equation}
-This is a simple differential equation that has solution
+This is a simple differential equation that has the following solution
 \begin{equation}
 f(x) = c e^{\lambda x}.
 \end{equation}
-We can verify this by plugging in $f(x)$ the first equation and noting that the left and right hand sides are equal
+We can verify this by plugging in $f(x)$ in the first equation and noting that the left and right sides are equal
 \begin{equation}
 \frac{d}{dx} c e^{\lambda x} = \lambda c e^{\lambda x} \Rightarrow 
 c \lambda e^{\lambda x} = c \lambda e^{\lambda x} 
 \end{equation}
 \end{example}
 
+The Hamiltonian operator $\hat{H}$ for a single particle in one dimension contains two terms: a kinetic energy term and a potential energy term.
+This operator is a translation of the classical total energy of a particle to the formalism of quantum mechanics.
+For a classical particle, the total energy can be written as
+\begin{iequation}
+\label{eq:basics:Eclassical}
+E_\text{classical}  =
+\underbrace{
+\frac{1}{2} m v^2
+}_{\text{kinetic}}
++
+\underbrace{
+V(x)
+}_{\text{potential}}
+= \frac{1}{2m} p^2 + V(x)
+\end{iequation}
+where $m$ is the \emph{mass} of the particle, $v$ is its \emph{velocity}, and $x$ is its \emph{position}.
+If we introduce the momentum $p = mv$, we can rewrite the kinetic energy as $\frac{1}{2 m} p^2$, as shown on the right-hand side of \cref{eq:basics:Eclassical}.
+The \emph{potential energy} $V(x)$ depends on the problem we are interested in solving.
+For example, for a particle attached to a string $V(x) = \frac{1}{2} k x^2$ (with $k$ being the force constant of the spring), while if we are describing an electron attracted by a nucleus, the potential is going to be proportional to $1/x$.
+ 
+Once we know the expression for the total energy of a classical system, we can transform it into a quantum mechanical Hamiltonian by replacing position and momentum with their corresponding operators.
+The position is replaced by the position operator ($\hat{x}$), which is equivalent to multiplying by $x$
+\begin{iequation}
+x \rightarrow \hat{x} = x
+\end{iequation}
+while momentum is replaced by the momentum operator $\hat{p}$, which is a complex differential operator
+\begin{iequation}
+p \rightarrow \hat{p} = - i \hbar \frac{d}{dx}
+\end{iequation}
+Using the properties of complex numbers ($i^2 = -1$), we can express the Hamiltonian in the following form
+\begin{iequation}
+\hat{H}  =
+\underbrace{
+-\frac{\hbar^2}{2m} \frac{d^2}{dx^2}
+}_{\text{kinetic}}
++
+\underbrace{
+V(x)
+}_{\text{potential}}  
+\end{iequation}
 
-For a molecule, the wave function depends on the coordinates of the electrons and nuclei.
-For example, for one electron the wave function is a function of the electron position vector $\mathbf{r} = (x,y,z)$ specified by the the Cartesian coordinates $x,y,z$, $\Psi(\mathbf{r})$.
-From quantum mechanics, we know that the wave function should be interpreted as a \emph{probability amplitude}, that is, if we take the modulus square the wave function we get the probability that the electron is in position $\mathbf{r}$
-\begin{equation}
-P(\mathbf{r}) \equiv \text{ probability of finding the electron in position } \mathbf{r} = |\Psi(\mathbf{r})|^2  = \Psi^*(\mathbf{r}) \Psi(\mathbf{r}) 
-\end{equation}
-For this probabilistic interpretation to make sense, the sum of the probability of finding the electron in the whole space must add to one, that is, the wave function should satisfy the \emph{normalization} condition
-\begin{equation}
-\int  d\mathbf{r} \; P(\mathbf{r}) =  \int _{-\infty}^{\infty} dx \int _{-\infty}^{\infty} dy \int _{-\infty}^{\infty} dz \; |\Psi(\mathbf{r})|^2   = 1
-\end{equation}
-This equation says that if we integrate (sum) the probability of finding one electron over all space, it must add up to one.
-
-Once we have an exact or approximate wave function we can compute the \emph{expectation value} (average value) of an operator corresponding to a quantity that we might want to determine.
-For example, to find out the energy we compute the expectation value of the Hamiltonian
-\begin{equation}
-E = \int \Psi^* \hat{H} \Psi
-\end{equation}
-where the integral runs over all positions of the particle in our system.\mnote{This result generalizes to any operator. If the operator $\hat{O}$ corresponds to the observable $O$, then the expectation value  of $O$ is given by
-\begin{equation}
-\braket{O}= \int \Psi^* \hat{O} \Psi
-\end{equation}
-}
 
 As pointed out by Dirac, the Schr\"{o}dinger equation is hard to solve!
 There are only very few systems for which one can find exact solutions of the Schr\"{o}dinger equation.
-These include a particle in a box, the harmonic oscillator, a rotating molecule.
+These include a particle in a box, the harmonic oscillator, and a rotating molecule.
 The next example discusses the particle in a box.
 
-\begin{example}[The particle in a box]
 \mfigure{
 \centering{
 \includegraphics[width=1.75in]{img/pib.pdf}
@@ -102,7 +122,9 @@ The next example discusses the particle in a box.
 \label{fig:pib}
 }
 
-In this example we examine one of the simplest problems in quantum mechanics that can be solved exactly: a particle trapped in a one-dimensional box.
+\begin{example}[The particle in a box]
+
+In this example, we examine one of the simplest problems in quantum mechanics that can be solved exactly: a particle trapped in a one-dimensional box.
 We assume that the box has length $L$, and it runs from 0 to $L$.
 For this toy model the Hamiltonian is given by
 \begin{equation}
@@ -114,13 +136,13 @@ The Schr\"{o}dinger equation is given by
 \end{equation}
 The solutions of this equation depend on a \emph{quantum number} $n = 1, 2, 3, \ldots$, an integer that goes from one to infinity.
 The energy of the $n$th level is
-\begin{iequation}
+\begin{equation}
 E_n = \frac{\hbar^2 n^2 \pi^2}{2m L^2} = \frac{h^2 n^2 }{8 m L^2}, \quad n = 1,2,3\ldots
-\end{iequation}
+\end{equation}
 while the corresponding wave functions are given by
-\begin{iequation}
+\begin{equation}
 \psi_{n}(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{n \pi x}{L}\right).
-\end{iequation}
+\end{equation}
 The energy levels and wave functions for the particle in a box are shown in Fig.~\ref{fig:pib}.
 Here we see two important features of the Schr\"{o}dinger equation.
 Firstly, the energy levels are discrete, a phenomenon that is referred to as quantization.
@@ -128,12 +150,36 @@ Since the energy is proportional to $1/L^2$, when we make the box wider, the spa
 Note also that the lowest energy level ($n=1$) always has a positive energy, this is usually called the \emph{zero point energy}.
 
 Secondly, the higher energy wave functions contain more nodes.
-Here by a node we mean a point where the wave function is equal to zero.
+Here, by a node, we mean a point where the wave function is equal to zero.
 This is a consequence of the fact that wave functions are orthogonal with respect to each other.
 You have already encountered this phenomenon when you studied the atomic orbitals of the hydrogen atom.
 For example, the 1s orbital has no nodes. The 2p orbitals (2p$_x$,2p$_y$,2p$_z$) have one nodal plane, etc.
 \end{example}
 
+\section{Interpreting the wave function}
+
+For a molecule, the wave function depends on the coordinates of the electrons and nuclei.
+For example, for a single electron, the wave function is a function of the position vector $\mathbf{r} = (x,y,z)$ specified by the Cartesian coordinates $x,y,z$, $\Psi(\mathbf{r})$.
+From quantum mechanics, we know that the wave function should be interpreted as a \emph{probability amplitude}; that is, if we take the modulus square of the wave function, we obtain the probability that the electron is in position $\mathbf{r}$
+\begin{equation}
+P(\mathbf{r}) \equiv \text{ probability of finding the electron in position } \mathbf{r} = |\Psi(\mathbf{r})|^2  = \Psi^*(\mathbf{r}) \Psi(\mathbf{r}) 
+\end{equation}
+For this probabilistic interpretation to make sense, the sum of the probability of finding the electron in the whole space must add to one; that is, the wave function should satisfy the \emph{normalization} condition
+\begin{equation}
+\int  d\mathbf{r} \; P(\mathbf{r}) =  \int _{-\infty}^{\infty} dx \int _{-\infty}^{\infty} dy \int _{-\infty}^{\infty} dz \; |\Psi(\mathbf{r})|^2   = 1
+\end{equation}
+This equation says that if we integrate (sum) the probability of finding one electron over all space, it must add up to one.
+
+Once we have an exact or approximate wave function, we can compute the \emph{expectation value} (average value) of an operator corresponding to a quantity that we might want to determine.
+For example, to find out the energy, we compute the expectation value of the Hamiltonian
+\begin{equation}
+E = \int d\mathbf{r} \; \Psi^*(\mathbf{r}) \hat{H} \Psi(\mathbf{r})
+\end{equation}
+where the integral is over all positions of the particle in our system.\mnote{This result generalizes to any operator. If the operator $\hat{O}$ corresponds to the observable $O$, then the expectation value  of $O$ is given by
+\begin{equation}
+\braket{O}= \int d\mathbf{r} \; \Psi^*(\mathbf{r}) \hat{O} \Psi(\mathbf{r})
+\end{equation}
+}
 
 
 \section{The Quantum Mechanics of Molecules}
@@ -167,7 +213,7 @@ Since the electron and nuclei interact via their electric charge, the potential 
 \captionof{figure}{In quantum mechanics, a molecule is a collection of particles with position vector $\mathbf{r}_i$ and charge $q_i$. The distance between particles $i$ and $j$ is $r_{ij} = |\mathbf{r}_i - \mathbf{r}_j|$.}
 }
 
-In a molecule, where we have electrons and nuclei, we can separate terms that refer to electron (e) and nuclear (n) coordinates
+In a molecule where we have electrons and nuclei, we can separate terms that refer to electron (e) and nuclear (n) coordinates
 \begin{equation}
 \hat{H} = \hat{T}_\mathrm{e} + \hat{T}_\mathrm{n} +  \hat{V}_\mathrm{ee} + \hat{V}_\mathrm{en} + \hat{V}_\mathrm{nn}
 \end{equation}
@@ -185,7 +231,7 @@ and $\hat{V}_\mathrm{en}$ is the electron-nuclear potential energy (for electron
 \end{equation}
 The other terms are defined in a similar way.
 
-In principle, to predict the energy and properties of atoms we could solve the Schr\"{o}dinger equation for a molecule
+In principle, to predict the energy and properties of molecules, we could directly solve the molecular Schr\"{o}dinger equation
 \begin{equation}
 \hat{H} \Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{R}_1,  \mathbf{R}_2,\ldots) = E \Psi(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{R}_1,  \mathbf{R}_2,\ldots)
 \end{equation}
@@ -202,9 +248,10 @@ When doing computations on atoms or molecules it is convenient to use \emph{atom
 These are natural units because the charge and mass of the particles we want to describe (electrons) are close to one.
 In practice, it means that we will often avoid carrying around powers of ten in computations.
 
-Another good reason for using atomic units is that computations done in the units involve numbers that are close to one, and because computers always use approximate representations for real numbers, the results will be less affected by roundoff errors.
+Another good reason for using atomic units is that computations done in the units involve numbers that are close to one.
+Because computers always use approximate representations for real numbers, the results will be less affected by roundoff errors.
 All computer programs that perform quantum chemistry computations on molecules adopt atomic units.
-So you will often have to convert results from atomic units to SI or other units that are commonly used in chemistry.
+So you will often have to convert results from atomic units to SI or other units commonly used in chemistry.
 
 Two of the most useful atomic units are the \emph{hartree} (symbol  \Eh), the unit of energy, and the \emph{bohr}, the unit of length.
 One hartree is a minuscule amount of energy, only about 4.36 $\times 10^{-18}$ Joules!
@@ -214,26 +261,25 @@ The energy changes that we measure in chemistry typically refer to one mole of m
 \end{iequation}
 This factor converts energy differences for one atom/molecule to a mole of atoms/molecules.
 
-\begin{example}[Strength of a carbon hydrogen bond in methane]
-Breaking a \ce{C-H} bond in methane requires about 104 kcal/mol. When converted to hartree this quantity is 104/627.51 kcal/mol = 0.165 \Eh.
+\begin{example}[Strength of a carbon-hydrogen bond in methane]
+Breaking a \ce{C-H} bond in methane requires about 104 kcal/mol. When converted to hartree units, this quantity is 104/627.51 kcal/mol = 0.166 \Eh.
 This is (approximately) the energy difference that you would get if you performed a quantum chemistry computation in which you compare the energy of one \ce{CH4} molecule with that of the \ce{CH3} radical plus one hydrogen atom.
 \end{example}
 
 \begin{example}[Chemical accuracy]
-When modeling chemical reactivity, a common goal is to achieve an accuracy of 1 kcal/mol. When converted to atomic units this amount is equal to 1/627.51 \Eh = 0.0015936 \Eh.
+When modeling chemical reactivity, a common goal is to achieve an accuracy of 1 kcal/mol. When converted to atomic units, this amount is equal to 1/627.51 \Eh = 0.0015936 \Eh.
 \end{example}
 
-One bohr is the most probable distance between the nucleus and the electron in a hydrogen atom, and when expressed in units of angstrom it is equal to
+One bohr is the most probable distance between the nucleus and the electron in a hydrogen atom, and when expressed in units of angstrom, it is equal to
 \begin{iequation}
 1 \text{ bohr} = 0.52918 \text{ \AA{}}
 \end{iequation}
 Most computational chemistry programs \emph{assume} that the geometry of a molecule is specified using in units of \AA{}.
 Alternatively, the user can specify that a molecular geometry is defined in units of bohr.
 However, computations are typically done in units of bohr, and some times the output of a computation may be printed in these units.
-It is always good to double check to avoid that a geometry is specified in the correct units.
+It is always good to double-check to ensure the molecular geometry is specified in the correct units.
 A typical problem for beginners is confusing the two units.
-In this case, it is easy to spot the problem because something strange typically happens is a computation (all the atoms in a molecule are far apart, or scrunched up).
-
+In this case, the problem is easy to spot because something strange typically happens in a computation (the molecule breaks apart or ends up scrunched up).
 
 The following table shows the name and conversion factors between atomic units and SI units:
 \begin{table}[htbp]
@@ -261,6 +307,31 @@ Time & & $2.41889 \times 10^{-17}$ s $\approx 1/41.3$ fs\\
 The speed of light in atomic units is $\alpha^{-1}\approx 137$ a.u.\mnote{The quantity $\alpha$ is also known as the fine-structure constant.}
 
 \begin{aside}
+\section*{Complex numbers}
+It is important to know a few facts about complex numbers (whose set is indicated with the symbol $\mathbb{C}$). A complex number $z \in \mathbb{C}$ can always be written as $z = x + iy$, where $x$ and $y$ are real numbers and $i$ is the \emph{imaginary unit}.
+$x$ is called the \emph{real part} of $z$ and $y$ is called the \emph{imaginary part} of $z$. 
+The imaginary unit squared is equal to minus one
+\begin{iequation}
+i^2 = -1
+\end{iequation}
+Two complex numbers $z = x + iy$ and $w = u + i v$ can be added in the following way
+\begin{equation*}
+z + w =  (x + u) + i (y + v)
+\end{equation*}
+Two complex numbers can be multiplied as follows
+\begin{equation*}
+z w = (x + iy)(u + iv) = xu + ixv + iyu + i^2 yv = xu - yv + i (xv + yu)
+\end{equation*}
+
+The \emph{complex conjugate} of a complex number $z$ is indicated with $z^*$ and is equal to
+\begin{equation*}
+z^* = (x + iy)^* = x - iy
+\end{equation*}
+The modulus square of a complex number is indicated with $|z|^2 = z^* z$ and is given by
+\begin{equation*}
+|z|^2 = z^* z = (x - iy)(x + iy) = x^2 + y^2
+\end{equation*}
+
 \section*{Calculation or computation?}
 What word should we use when we want to describe the result of some computational procedure used to determine the properties of molecule?
 Often the words \emph{computation} and \emph{calculation} are used interchangeably, however, the word computation best conveys the meaning of the results of a mathematical calculation done with a computer. Here are dictionary definitions of these two terms:
@@ -271,7 +342,5 @@ Calculation: A mathematical determination of the size or number of something
 Computation: The action of mathematical calculation. The use of computers, especially as a subject of research or study.
 \end{quote}
 \end{aside}
-
-
 
 \end{document}

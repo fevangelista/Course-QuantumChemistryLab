@@ -46,6 +46,7 @@
 \RequirePackage{hyperref}
 \RequirePackage{booktabs}
 \RequirePackage{xcolor}
+\RequirePackage{cleveref}
 
 \hypersetup{
     colorlinks,
@@ -179,6 +180,23 @@ leftmargin=0cm,
 rightmargin=0cm,
 linewidth=2pt]{eBox}	
 
+% Example box	  
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+backgroundcolor=white,%gray!1,
+linecolor=gray,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=2pt]{exampleBox}
+
 % Defines the theorem text style for each type of theorem to one of the three styles above
 \newcounter{dummy} 
 \numberwithin{dummy}{section}
@@ -187,8 +205,6 @@ linewidth=2pt]{eBox}
 \newtheorem{exerciseT}{Exercise}[section]
 \theoremstyle{blacknumex}
 \newtheorem{exampleT}{Example}[section]
-%\theoremstyle{blacknumbox}
-%\newtheorem{importantEquationT}[dummy]{ImportantEquation}
 
 
 %% A custom itemize env
@@ -224,8 +240,17 @@ linewidth=2pt]{eBox}
   {\end{mdframed}}
 
 \newenvironment{example}
-	{\begin{exampleT}}
-	{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}
+{
+	\par
+	\begin{exampleBox}
+	\begin{exampleT}
+}
+{
+	\hfill{\tiny\ensuremath{\blacksquare}}
+	\end{exampleT}
+	\end{exampleBox}
+	\par
+}
 
 \newenvironment{exercise}
 	{\begin{eBox}\begin{exerciseT}}
